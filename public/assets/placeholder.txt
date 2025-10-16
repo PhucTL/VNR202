@@ -1,0 +1,10 @@
+Place real images, audio and video files here. Use names referenced in src/data/timeline.js and src/components/PuzzleUnlock.jsx:
+- p1-1.jpg, p1-2.mp4
+- p2-1.jpg
+- p3-1.jpg
+- p4-1.jpg
+- p5-1.jpg
+- p6-1.jpg
+- puzzle-v1.mp4 ... puzzle-v6.mp4
+
+Replace these with production media; Vite serves files under /assets/... when placed in public/assets.
