@@ -1,147 +1,140 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { useProgress } from '../context/ProgressContext';
+import TIMELINE from '../data/timeline';
 
-const IMAGE_URL = 'https://bcp.cdnchinhphu.vn/thumb_w/777/334894974524682240/2025/6/30/tphcm-1-1751245519173693919081.jpg';
-const VIDEO_URLS = Array.from({ length: 6 }).map((_, i) => `/assets/puzzle-v${i + 1}.mp4`);
-
-export default function PuzzleUnlock() {
-  const { unlockedPieces, unlockPiece } = useProgress();
-  const [activePiece, setActivePiece] = useState(null);
-  const [videoEnded, setVideoEnded] = useState(false);
-  const [quizAnswer, setQuizAnswer] = useState('');
-  const videoRef = useRef(null);
-
-  const openPiece = (i) => {
-    if (unlockedPieces[i]) return;
-    setActivePiece(i);
-    setVideoEnded(false);
-    setQuizAnswer('');
-    setTimeout(() => videoRef.current && videoRef.current.play().catch(() => {}), 100);
-  };
-
-  const submit = () => {
-    if (quizAnswer.trim().toUpperCase() === 'A') {
-      unlockPiece(activePiece);
-      close();
-    } else alert('Sai rồi. Thử lại');
-  };
-
-  const close = () => { setActivePiece(null); setVideoEnded(false); setQuizAnswer(''); };
+const PuzzleUnlock = () => {
+  const { unlockedPieces } = useProgress();
+  
+  // Tính toán các mảnh ghép đã mở khóa (5 giai đoạn, mỗi giai đoạn cần hoàn thành cả 3 cột mốc)
+  const totalPhases = TIMELINE.length; // 5 giai đoạn
+  const unlockedPhases = TIMELINE.filter(phase => {
+    // Kiểm tra xem tất cả 3 milestones trong phase này đã unlock chưa
+    return phase.milestones.every(milestone => unlockedPieces.includes(milestone.id));
+  });
+  
+  const progress = (unlockedPhases.length / totalPhases) * 100;
+  const isCompleted = unlockedPhases.length === totalPhases;
 
   return (
     <div className="mt-8">
-      <h2 className="text-xl font-bold text-white mb-4">Bộ sưu tập ghép ảnh</h2>
-      <div className="mb-4">
-        <div className="bg-white/10 rounded-full h-2">
-          <div 
-            className="bg-amber-400 h-2 rounded-full transition-all duration-500"
-            style={{ width: `${(unlockedPieces.filter(Boolean).length / 6) * 100}%` }}
-          />
+      <div className="mb-6 p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg border border-purple-500/30">
+        <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+          🧩 Bộ sưu tập mảnh ghép lịch sử
+        </h2>
+        <p className="text-sm text-slate-300">
+          Hoàn thành <strong>cả 3 cột mốc</strong> trong mỗi giai đoạn để nhận 1 mảnh ghép. Mục tiêu: <strong>5 mảnh ghép toàn cảnh 1930-nay!</strong>
+        </p>
+      </div>
+
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-medium text-slate-300">Tiến độ sưu tập:</span>
+          <span className="text-sm font-bold text-amber-300">
+            {unlockedPhases.length}/{totalPhases} mảnh ghép
+          </span>
         </div>
-        <div className="text-sm text-slate-300 mt-2">
-          Tiến độ: {unlockedPieces.filter(Boolean).length}/6 mảnh đã mở khóa
+        <div className="bg-white/10 rounded-full h-3 overflow-hidden">
+          <div 
+            className="bg-gradient-to-r from-amber-400 to-orange-500 h-3 rounded-full transition-all duration-500 relative"
+            style={{ width: `${progress}%` }}
+          >
+            <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+          </div>
         </div>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {Array.from({ length: 6 }).map((_, i) => {
-          const isUnlocked = unlockedPieces[i];
-          const cols = 3, rows = 2;
-          const xPos = (i % cols) * (-100 / (cols - 1));
-          const yPos = Math.floor(i / cols) * (-100 / (rows - 1));
-
+      {/* Grid 5 mảnh ghép tương ứng 5 giai đoạn */}
+      <div className="grid grid-cols-5 gap-3 mb-6">
+        {TIMELINE.map((phase, index) => {
+          const isPhaseUnlocked = unlockedPhases.some(p => p.id === phase.id);
+          const completedMilestones = phase.milestones.filter(m => unlockedPieces.includes(m.id)).length;
+          
           return (
-            <div 
-              key={i} 
-              className={`relative h-32 sm:h-40 rounded overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 ${isUnlocked ? 'scale-100' : 'scale-95 hover:scale-100'}`}
-              onClick={() => openPiece(i)}
-            >
-              <div
-                style={{ 
-                  backgroundImage: `url(${IMAGE_URL})`, 
-                  backgroundSize: `${cols * 100}% ${rows * 100}%`, 
-                  backgroundPosition: `${xPos}% ${yPos}%` 
-                }}
-                className={`w-full h-full transition-all duration-300 ${isUnlocked ? '' : 'filter blur-sm brightness-75'}`}
-              />
-              {!isUnlocked && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/40 backdrop-blur-sm">
-                  <div className="text-lg font-bold mb-2">Mảnh {i + 1}</div>
-                  <div className="text-xs text-center mb-3 px-2">Xem video & quiz để mở khóa</div>
-                  <button 
-                    className="px-3 py-1 rounded bg-amber-400 text-black font-bold text-sm hover:bg-amber-300 transition transform hover:scale-105" 
-                    onClick={(e) => { e.stopPropagation(); openPiece(i); }}
-                  >
-                    Mở khóa
-                  </button>
+            <div key={phase.id} className="relative">
+              <div className={`
+                aspect-square rounded-lg border-2 transition-all duration-300 overflow-hidden
+                ${isPhaseUnlocked 
+                  ? 'border-green-400 bg-gradient-to-br from-green-100 to-blue-100 shadow-lg' 
+                  : 'border-gray-300 bg-gray-100'
+                }
+              `}>
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <div className={`text-2xl mb-1 ${isPhaseUnlocked ? 'animate-pulse' : ''}`}>
+                    {isPhaseUnlocked ? '✨' : '🔒'}
+                  </div>
+                  <div className={`text-xs text-center font-bold ${
+                    isPhaseUnlocked ? 'text-green-700' : 'text-gray-500'
+                  }`}>
+                    {phase.yearRange}
+                  </div>
+                  <div className="text-xs text-center mt-1">
+                    <span className={`
+                      px-1 py-0.5 rounded text-xs font-medium
+                      ${isPhaseUnlocked 
+                        ? 'bg-green-200 text-green-800' 
+                        : completedMilestones > 0
+                        ? 'bg-yellow-200 text-yellow-800'
+                        : 'bg-gray-200 text-gray-600'
+                      }
+                    `}>
+                      {completedMilestones}/3
+                    </span>
+                  </div>
+                  {isPhaseUnlocked && (
+                    <div className="absolute top-1 right-1 bg-green-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
+                      ✓
+                    </div>
+                  )}
                 </div>
-              )}
-              {isUnlocked && (
-                <div className="absolute top-2 right-2 text-xs bg-green-500 text-white rounded-full px-2 py-1 font-bold">
-                  ✓ MỞ
-                </div>
-              )}
+              </div>
             </div>
           );
         })}
       </div>
 
-      {unlockedPieces.filter(Boolean).length === 6 && (
-        <div className="mt-6 p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg text-center">
-          <h3 className="text-xl font-bold text-black mb-2">🎉 Chúc mừng!</h3>
-          <p className="text-black">Bạn đã hoàn thành bộ sưu tập! Tất cả mảnh ghép đã được mở khóa.</p>
-        </div>
-      )}
+      {/* Hướng dẫn chi tiết */}
+      <div className="mb-6 p-4 bg-blue-50/10 rounded-lg border border-blue-400/30">
+        <h3 className="text-lg font-bold text-blue-300 mb-2">📋 Hướng dẫn thu thập</h3>
+        <ul className="text-sm text-slate-300 space-y-1">
+          <li>• Mỗi giai đoạn có <strong>3 cột mốc</strong> cần khám phá</li>
+          <li>• Hoàn thành quiz của cả 3 cột mốc → Nhận 1 mảnh ghép</li>
+          <li>• Tổng cộng: 5 giai đoạn = 5 mảnh ghép</li>
+          <li>• Mục tiêu: Ghép thành bức tranh toàn cảnh lịch sử Đảng</li>
+        </ul>
+      </div>
 
-      {activePiece !== null && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={close}>
-          <div className="bg-white rounded-lg w-full max-w-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="p-4 border-b">
-              <h3 className="font-bold text-lg">Video mảnh {activePiece + 1}</h3>
-            </div>
-            <div className="p-4">
-              <video ref={videoRef} controls onEnded={() => setVideoEnded(true)} className="w-full bg-black rounded">
-                <source src={VIDEO_URLS[activePiece]} type="video/mp4" />
-                Trình duyệt không hỗ trợ video.
-              </video>
-
-              {!videoEnded && (
-                <div className="mt-3 text-slate-600 text-center">
-                  📹 Xem hết video để mở quiz
-                </div>
-              )}
-
-              {videoEnded && (
-                <div className="mt-4">
-                  <div className="text-sm mb-3 font-medium">
-                    🧠 Quiz: Về nội dung video vừa xem (Demo: đáp án đúng = A)
-                  </div>
-                  <input 
-                    value={quizAnswer} 
-                    onChange={(e) => setQuizAnswer(e.target.value)} 
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent" 
-                    placeholder="Nhập A, B, hoặc C..." 
-                  />
-                  <div className="mt-3 flex gap-3">
-                    <button 
-                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium" 
-                      onClick={submit}
-                    >
-                      Nộp câu trả lời
-                    </button>
-                    <button 
-                      className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition" 
-                      onClick={close}
-                    >
-                      Hủy
-                    </button>
-                  </div>
-                </div>
-              )}
+      {/* Completion celebration */}
+      {isCompleted ? (
+        <div className="mt-8 p-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
+          <div className="relative z-10">
+            <div className="text-4xl mb-3">🎉🏆🎊</div>
+            <h3 className="text-2xl font-bold text-white mb-3">Chúc mừng! Bộ sưu tập hoàn thành!</h3>
+            <p className="text-green-100 mb-4">
+              Bạn đã ghép đủ 5 mảnh lịch sử tạo thành <strong>bức tranh toàn cảnh Đảng Cộng sản Việt Nam 1930-nay</strong>
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <button className="px-6 py-2 bg-white text-green-600 rounded-lg font-bold hover:bg-green-50 transition">
+                🖼️ Xem Panorama
+              </button>
+              <button className="px-6 py-2 bg-green-700 text-white rounded-lg font-bold hover:bg-green-800 transition">
+                📜 Chứng nhận hoàn thành
+              </button>
             </div>
           </div>
+        </div>
+      ) : (
+        <div className="bg-blue-50/10 rounded-lg p-4 text-center border border-blue-400/30">
+          <p className="text-blue-300 font-medium">
+            🎯 Tiếp tục khám phá để thu thập thêm mảnh ghép!
+          </p>
+          <p className="text-slate-400 text-sm mt-1">
+            Còn lại {totalPhases - unlockedPhases.length} giai đoạn cần hoàn thành
+          </p>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default PuzzleUnlock;

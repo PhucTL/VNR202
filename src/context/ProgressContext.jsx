@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'museum_progress_v1';
+const STORAGE_KEY = 'museum_progress_v2';
 
 const ProgressContext = createContext(null);
 
 export function ProgressProvider({ children }) {
-  const [unlockedPieces, setUnlockedPieces] = useState(Array(6).fill(false));
+  const [unlockedPieces, setUnlockedPieces] = useState([]); // Array of milestone IDs
   const [completedPhases, setCompletedPhases] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export function ProgressProvider({ children }) {
     if (raw) {
       try {
         const parsed = JSON.parse(raw);
-        setUnlockedPieces(parsed.unlockedPieces || Array(6).fill(false));
+        setUnlockedPieces(parsed.unlockedPieces || []);
         setCompletedPhases(parsed.completedPhases || []);
       } catch {}
     }
@@ -24,12 +24,10 @@ export function ProgressProvider({ children }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   }, [unlockedPieces, completedPhases]);
 
-  const unlockPiece = (idx) => {
-    setUnlockedPieces((s) => {
-      const copy = [...s];
-      copy[idx] = true;
-      return copy;
-    });
+  const unlockPiece = (milestoneId) => {
+    setUnlockedPieces((s) => 
+      s.includes(milestoneId) ? s : [...s, milestoneId]
+    );
   };
 
   const markPhaseComplete = (phaseId) => {
