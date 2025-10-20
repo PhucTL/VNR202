@@ -32,27 +32,27 @@ export default function Gallery({ phase, phaseIndex }) {
   const milestones = phase.milestones || phase.events || []; // backward compatibility
 
   return (
-    <div className="mt-6">
-      <div className="mb-6 p-4 bg-white/5 rounded-lg border border-amber-500/30">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2">
+    <div className="mt-8">
+      <div className="mb-8 p-6 bg-white/90 rounded-2xl border border-red-200 shadow-lg">
+        <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center gap-3">
           🏛️ {phase.title}
         </h3>
-        <p className="text-sm text-slate-300 mt-1 mb-3">{phase.description}</p>
-        <div className="text-xs text-amber-300">
+        <p className="text-base text-slate-600 mt-2 mb-4">{phase.description}</p>
+        <div className="text-sm text-red-600 font-medium">
           🧩 Khám phá {milestones.length} cột mốc lịch sử • Hoàn thành quiz để nhận mảnh ghép
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {milestones.map((milestone, idx) => {
           const category = milestone.category || 'event';
           return (
             <div 
               key={milestone.id} 
-              className="bg-white/5 rounded-lg p-4 cursor-pointer hover:bg-white/10 transition-all duration-200 border border-white/10 hover:border-amber-500/50 group" 
+              className="bg-white/90 rounded-2xl p-6 cursor-pointer hover:bg-white transition-all duration-200 border border-slate-200 hover:border-red-300 hover:shadow-xl group transform hover:scale-105" 
               onClick={() => openMilestone(milestone)}
             >
-              <div className="h-32 sm:h-40 bg-slate-800 rounded-md flex items-center justify-center overflow-hidden mb-3 relative">
+              <div className="h-40 sm:h-48 bg-slate-100 rounded-xl flex items-center justify-center overflow-hidden mb-4 relative">
                 {milestone.type === 'image' ? (
                   <>
                     <img 
@@ -64,34 +64,34 @@ export default function Gallery({ phase, phaseIndex }) {
                         e.target.nextSibling.style.display = 'flex';
                       }} 
                     />
-                    <div className="hidden text-sm text-slate-300 font-medium items-center justify-center">
+                    <div className="hidden text-base text-slate-600 font-medium items-center justify-center">
                       {milestone.type.toUpperCase()}
                     </div>
                   </>
                 ) : (
-                  <div className="text-sm text-slate-300 font-medium flex items-center justify-center">
+                  <div className="text-base text-slate-600 font-medium flex items-center justify-center">
                     {milestone.type === 'audio' ? '🎵' : '🎬'} {milestone.type.toUpperCase()}
                   </div>
                 )}
                 
                 {/* Category Badge */}
-                <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-bold text-white ${categoryColors[category]}`}>
+                <div className={`absolute top-3 left-3 px-3 py-2 rounded-full text-sm font-bold text-white ${categoryColors[category]} shadow-lg`}>
                   {categoryIcons[category]} {categoryLabels[category]}
                 </div>
               </div>
               
-              <div className="text-sm text-white font-medium mb-1 line-clamp-2">{milestone.title}</div>
-              <div className="text-xs text-slate-400 mb-3 line-clamp-2">{milestone.caption}</div>
+              <div className="text-base text-slate-800 font-bold mb-2 line-clamp-2">{milestone.title}</div>
+              <div className="text-sm text-slate-600 mb-4 line-clamp-2">{milestone.caption}</div>
               
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <button 
-                  className="flex-1 px-3 py-1 bg-amber-400 text-black rounded text-xs font-medium hover:bg-amber-300 transition flex items-center justify-center gap-1" 
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl text-sm font-bold hover:from-red-600 hover:to-red-700 transition flex items-center justify-center gap-2 shadow-lg" 
                   onClick={(e) => { e.stopPropagation(); setShowQuizFor(idx); }}
                 >
                   🧠 Quiz
                 </button>
                 <button 
-                  className="px-3 py-1 bg-blue-500 text-white rounded text-xs font-medium hover:bg-blue-400 transition" 
+                  className="px-4 py-3 bg-blue-500 text-white rounded-xl text-sm font-bold hover:bg-blue-600 transition shadow-lg" 
                   onClick={(e) => { e.stopPropagation(); openMilestone(milestone); }}
                 >
                   📖 Chi tiết
@@ -106,10 +106,10 @@ export default function Gallery({ phase, phaseIndex }) {
 
       {showQuizFor !== null && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={close}>
-          <div className="bg-white rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="p-4 border-b">
-              <h3 className="font-bold text-slate-900">🧠 Quiz: {phase.title}</h3>
-              <div className="text-sm text-slate-600 mt-1">Cột mốc: {milestones[showQuizFor]?.title}</div>
+          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-slate-200">
+              <h3 className="font-bold text-slate-900 text-lg">🧠 Quiz: {phase.title}</h3>
+              <div className="text-sm text-slate-600 mt-2">Cột mốc: {milestones[showQuizFor]?.title}</div>
             </div>
             <Quiz
               question={{ 
@@ -122,15 +122,18 @@ export default function Gallery({ phase, phaseIndex }) {
                 { value: 'C', label: 'Không có ảnh hưởng đáng kể đến lịch sử' }
               ]}
               onCorrect={() => { 
-                unlockPiece(milestones[showQuizFor]?.id); 
+                const milestoneId = milestones[showQuizFor]?.id;
+                console.log('🎯 Quiz completed! Unlocking milestone:', milestoneId);
+                console.log('Milestone object:', milestones[showQuizFor]);
+                unlockPiece(milestoneId); 
                 setShowQuizFor(null);
                 alert(`🎉 Chúc mừng! Bạn đã hoàn thành cột mốc "${milestones[showQuizFor]?.title}"`);
               }}
               onWrong={() => { /* noop */ }}
             />
-            <div className="p-4 border-t">
+            <div className="p-6 border-t border-slate-200">
               <button 
-                className="w-full px-4 py-2 bg-slate-100 text-slate-700 rounded hover:bg-slate-200 transition"
+                className="w-full px-4 py-3 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition font-medium"
                 onClick={close}
               >
                 Đóng

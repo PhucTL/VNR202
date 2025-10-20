@@ -25,9 +25,13 @@ export function ProgressProvider({ children }) {
   }, [unlockedPieces, completedPhases]);
 
   const unlockPiece = (milestoneId) => {
-    setUnlockedPieces((s) => 
-      s.includes(milestoneId) ? s : [...s, milestoneId]
-    );
+    console.log('🔓 unlockPiece called with:', milestoneId);
+    console.log('Current unlockedPieces before update:', unlockedPieces);
+    setUnlockedPieces((s) => {
+      const newState = s.includes(milestoneId) ? s : [...s, milestoneId];
+      console.log('🔄 New unlockedPieces state:', newState);
+      return newState;
+    });
   };
 
   const markPhaseComplete = (phaseId) => {

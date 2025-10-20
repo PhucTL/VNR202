@@ -20,31 +20,40 @@ function AppInner() {
   };
 
   return (
-  <div className="museum-root min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white p-4 sm:p-8">
-      <div className="museum-container">
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-          <div className="mb-4 sm:mb-0">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-amber-300">Dấu ấn Cách mạng</h1>
-            <div className="text-xs sm:text-sm text-slate-300">Lịch sử Đảng Cộng sản Việt Nam 1930–nay — Bảo tàng số tương tác</div>
+    <div className="museum-root">
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div className="mb-6 sm:mb-0 text-center sm:text-left">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-red-600 mb-2">
+            🏛️ Dấu ấn Cách mạng
+          </h1>
+          <div className="text-lg sm:text-xl text-slate-700 font-medium">
+            Lịch sử Đảng Cộng sản Việt Nam 1930–nay — Bảo tàng số tương tác
           </div>
-          <nav className="flex gap-2">
-            <button className="px-3 py-2 bg-white/5 rounded text-white text-sm hover:bg-white/10 transition">Khám phá</button>
-            <button className="px-3 py-2 bg-white/5 rounded text-white text-sm hover:bg-white/10 transition">Bộ sưu tập</button>
-          </nav>
-        </header>
+          <div className="text-sm text-slate-500 mt-2">
+            🧩 Thu thập mảnh ghép lịch sử • 🎧 Nghe thuyết minh sinh động
+          </div>
+        </div>
+        <nav className="flex gap-3">
+          <button className="px-4 py-3 bg-red-500/20 rounded-xl text-red-700 text-base font-semibold hover:bg-red-500/30 transition border border-red-200">
+            🎯 Khám phá
+          </button>
+          <button className="px-4 py-3 bg-blue-500/20 rounded-xl text-blue-700 text-base font-semibold hover:bg-blue-500/30 transition border border-blue-200">
+            📚 Bộ sưu tập
+          </button>
+        </nav>
+      </header>
 
-        <main>
-          <Timeline timeline={TIMELINE} onSelect={handleSelectPhase} activeIndex={selected} />
+      <main className="space-y-8">        
+        <Timeline timeline={TIMELINE} onSelect={handleSelectPhase} activeIndex={selected} />
 
-          <section ref={galleryRef} className="mt-6">
-            <Gallery phase={TIMELINE[selected]} phaseIndex={selected} />
-          </section>
+        <section ref={galleryRef}>
+          <Gallery phase={TIMELINE[selected]} phaseIndex={selected} />
+        </section>
 
-          <section className="mt-10">
-            <PuzzleUnlock />
-          </section>
-        </main>
-      </div>
+        <section>
+          <PuzzleUnlock />
+        </section>
+      </main>
     </div>
   );
 }
