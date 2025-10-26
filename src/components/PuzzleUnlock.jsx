@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useProgress } from '../context/ProgressContext';
 import TIMELINE from '../data/timeline';
+import Certificate from './Certificate';
+import Panorama from './Panorama';
 
 const PuzzleUnlock = () => {
-  const { unlockedPieces, unlockPiece } = useProgress();
+  const { unlockedPieces, unlockPiece, isCompleted, markPhaseComplete } = useProgress();
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [showPanorama, setShowPanorama] = useState(false);
   
   // Debug: Log để kiểm tra dữ liệu
   console.log('Unlocked pieces:', unlockedPieces);
@@ -14,11 +18,17 @@ const PuzzleUnlock = () => {
   const unlockedPhases = TIMELINE.filter(phase => {
     const allMilestonesUnlocked = phase.milestones.every(milestone => unlockedPieces.includes(milestone.id));
     console.log(`Phase ${phase.yearRange}:`, phase.milestones.map(m => m.id), 'Unlocked:', allMilestonesUnlocked);
+    
+    // Mark phase as complete if all milestones are unlocked
+    if (allMilestonesUnlocked) {
+      markPhaseComplete(phase.id || phase.yearRange);
+    }
+    
     return allMilestonesUnlocked;
   });
   
   const progress = (unlockedPhases.length / totalPhases) * 100;
-  const isCompleted = unlockedPhases.length === totalPhases;
+  const isCompletedLocal = unlockedPhases.length === totalPhases;
 
   const puzzlePieces = [
     {
@@ -242,7 +252,7 @@ const PuzzleUnlock = () => {
         </div>
       </div>
 
-      {/* Debug controls - chỉ hiện khi dev
+      Debug controls - chỉ hiện khi dev
       {process.env.NODE_ENV === 'development' && (
         <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <h4 className="font-bold text-yellow-800 mb-2">🔧 Debug Controls</h4>
@@ -277,7 +287,7 @@ const PuzzleUnlock = () => {
             </button>
           </div>
         </div>
-      )} */}
+      )}
 
       {/* Notification khi có pieces được unlock */}
       {unlockedPhases.length > 0 && (
@@ -324,7 +334,7 @@ const PuzzleUnlock = () => {
       </div>
 
       {/* Completion celebration */}
-      {isCompleted ? (
+      {(isCompleted || isCompletedLocal) ? (
         <div className="mt-8 p-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
           <div className="relative z-10">
@@ -334,10 +344,16 @@ const PuzzleUnlock = () => {
               Bạn đã ghép đủ 5 mảnh lịch sử tạo thành <strong>bức tranh toàn cảnh Đảng Cộng sản Việt Nam 1930-nay</strong>
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
-              <button className="px-6 py-2 bg-white text-green-600 rounded-lg font-bold hover:bg-green-50 transition">
+              <button 
+                onClick={() => setShowPanorama(true)}
+                className="px-6 py-2 bg-white text-green-600 rounded-lg font-bold hover:bg-green-50 transition"
+              >
                 🖼️ Xem Panorama
               </button>
-              <button className="px-6 py-2 bg-green-700 text-white rounded-lg font-bold hover:bg-green-800 transition">
+              <button 
+                onClick={() => setShowCertificate(true)}
+                className="px-6 py-2 bg-green-700 text-white rounded-lg font-bold hover:bg-green-800 transition"
+              >
                 📜 Chứng nhận hoàn thành
               </button>
             </div>
@@ -352,6 +368,16 @@ const PuzzleUnlock = () => {
             Còn lại {totalPhases - unlockedPhases.length} giai đoạn cần hoàn thành
           </p>
         </div>
+      )}
+      
+      {/* Certificate Modal */}
+      {showCertificate && (
+        <Certificate onClose={() => setShowCertificate(false)} />
+      )}
+
+      {/* Panorama Modal */}
+      {showPanorama && (
+        <Panorama onClose={() => setShowPanorama(false)} />
       )}
     </div>
   );

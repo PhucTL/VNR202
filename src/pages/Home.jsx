@@ -1,9 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import HOME_CONTENT from '../data/homeContent';
 
 export default function Home() {
   const { hero, partyFoundation, projectName, vision } = HOME_CONTENT;
+  const [showForm, setShowForm] = useState(false);
+  const [playerName, setPlayerName] = useState('');
+  const navigate = useNavigate();
+
+  const handleStartExploring = () => {
+    if (playerName.trim()) {
+      // Lưu thông tin người chơi và thời gian bắt đầu
+      localStorage.setItem('playerName', playerName.trim());
+      localStorage.setItem('startTimestamp', Date.now().toString());
+      
+      // Hiển thị thông báo và chuyển trang
+      alert('Hãy hoàn thành hành trình khám phá 5 mốc để nhận chứng chỉ đặc biệt từ team!');
+      navigate('/main');
+    }
+  };
 
   return (
     <div className="museum-content">
@@ -97,11 +112,60 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="cta-section mt-16 text-center">
+        {!showForm ? (
+          <div className="bg-gradient-to-r from-red-500 to-red-700 text-white p-8 rounded-2xl shadow-xl">
+            <h2 className="text-3xl font-bold mb-4">🏛️ Hành trình Khám phá Bảo tàng Ảo</h2>
+            <p className="text-xl mb-6">
+              Khám phá 5 mốc lịch sử quan trọng và nhận chứng chỉ hoàn thành đặc biệt!
+            </p>
+            <button
+              onClick={() => setShowForm(true)}
+              className="inline-block px-8 py-4 bg-white text-red-600 text-lg font-semibold rounded-xl shadow-md hover:bg-red-50 transition-transform transform hover:scale-105"
+            >
+              🚀 Khám phá ngay
+            </button>
+          </div>
+        ) : (
+          <div className="bg-white border-2 border-red-200 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
+            <h3 className="text-2xl font-bold text-red-600 mb-4">🎯 Bắt đầu hành trình</h3>
+            <p className="text-gray-600 mb-6">
+              Nhập tên của bạn để bắt đầu khám phá và nhận chứng chỉ hoàn thành:
+            </p>
+            <input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Nhập tên của bạn..."
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none mb-4 text-lg"
+              onKeyPress={(e) => e.key === 'Enter' && handleStartExploring()}
+            />
+            <div className="flex gap-3">
+              <button
+                onClick={handleStartExploring}
+                disabled={!playerName.trim()}
+                className="flex-1 px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+              >
+                🎯 Bắt đầu khám phá
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                className="px-4 py-3 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition"
+              >
+                Hủy
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
     <Link
         to="/main"
         className="inline-block mt-10 px-6 py-3 bg-red-600 text-white text-lg font-semibold rounded-xl shadow-md hover:bg-red-700 transition-transform transform hover:scale-105"
         >
-        🚀 Khám phá ngay
+        🚀 Khám phá ngay (Cũ)
     </Link>
 
     </div>
