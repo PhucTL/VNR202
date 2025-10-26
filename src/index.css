@@ -15,30 +15,26 @@
 
 /* ==== NỀN: Chủ đề lịch sử cách mạng - Ảnh Bác Hồ ở giữa ==== */
 body {
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
+  margin: 0;
   background:
-    /* Lớp gradient mờ nhẹ để không che khuất ảnh */
-    linear-gradient(135deg, 
-      rgba(30, 30, 30, 0.3) 0%, 
-      rgba(120, 0, 0, 0.2) 25%, 
+    linear-gradient(
+      135deg,
+      rgba(30, 30, 30, 0.3) 0%,
+      rgba(120, 0, 0, 0.2) 25%,
       rgba(220, 38, 38, 0.15) 50%,
       rgba(40, 40, 40, 0.3) 100%
     ),
-    /* Ảnh Bác Hồ ở giữa làm nền */
     url('/assets/bachohominh.jpg');
-  background-size: 
-    cover,
-    contain; /* Ảnh vừa khung và giữ tỷ lệ */
+  background-size: cover; /* Bao phủ toàn màn hình */
   background-repeat: no-repeat;
-  background-position: 
-    center,
-    center; /* Ảnh ở chính giữa */
-  background-attachment: fixed;
+  background-position: center center;
+  background-attachment: fixed; /* Hiệu ứng nền cố định khi cuộn */
+  background-blend-mode: overlay; /* Pha trộn gradient với ảnh */
   color: #1a1a1a;
   animation: atmosphereShift 8s ease-in-out infinite alternate;
 }
+
 
 /* Hiệu ứng thay đổi ánh sáng nhẹ */
 @keyframes atmosphereShift {

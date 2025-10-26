@@ -1,12 +1,13 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 import { ProgressProvider } from './context/ProgressContext';
-import Home from './pages/Home';
+import router from './router';
 
 export default function App() {
   return (
     <ProgressProvider>
       <div className="museum-root">
-        <Home />
+        <RouterProvider router={router} />
       </div>
     </ProgressProvider>
   );
