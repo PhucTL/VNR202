@@ -73,9 +73,10 @@ body::after {
 /* ==== Root container ==== */
 #root {
   width: 100%;
-  margin: 0 auto;
-  padding: 0 8vw;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 /* ==== Khối bảo tàng (Glass UI) - Trong suốt để thấy ảnh nền ==== */
@@ -88,10 +89,9 @@ body::after {
     );
   backdrop-filter: blur(15px) saturate(130%) brightness(1.05);
   -webkit-backdrop-filter: blur(15px) saturate(130%) brightness(1.05);
-  border-radius: 32px;
   box-shadow:
     /* Bóng chính */
-    0 30px 80px -15px rgba(0, 0, 0, 0.3),
+    0 0 80px -15px rgba(0, 0, 0, 0.3),
     /* Ánh sáng vàng đồng */
     0 0 60px rgba(255, 215, 0, 0.12),
     /* Ánh sáng đỏ cách mạng */
@@ -100,10 +100,9 @@ body::after {
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     /* Bóng trong */
     inset 0 -1px 0 rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  padding: 3.5rem 4rem;
-  max-width: 1000px;
-  margin: 3rem auto;
+  border-top: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  min-height: 100vh;
   color: #1a1a1a;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -362,24 +361,22 @@ hr::after {
 }
 
 /* ==== Responsive ==== */
+/* Content styles */
+.museum-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3.5rem 4rem;
+}
+
 @media (max-width: 1024px) {
-  #root {
-    padding: 0 5vw;
-  }
-  .museum-root {
+  .museum-content {
     padding: 2rem;
-    margin: 2rem auto;
   }
 }
 
 @media (max-width: 768px) {
-  #root {
-    padding: 1rem;
-  }
-  .museum-root {
-    border-radius: 16px;
+  .museum-content {
     padding: 1.5rem;
-    margin: 1rem auto;
   }
   .museum-root h1 {
     font-size: 2.2rem;
