@@ -143,7 +143,7 @@ export default function ModalMedia({ item, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-start pt-[630px] z-50 overflow-y-auto" onClick={handleClose}>
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-start pt-[500px] z-50 overflow-y-auto" onClick={handleClose}>
       <div className="bg-white rounded-2xl overflow-hidden max-w-5xl w-full max-h-[95vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
         
         {/* Header */}
