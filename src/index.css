@@ -3,13 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==== Performance Optimized Animations ==== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+/* ==== Performance Settings ==== */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.no-lag {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 /* ==== Font & Base Reset ==== */
 :root {
-  font-family: "Inter", "Noto Sans", "Be Vietnam Pro", system-ui, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   color-scheme: light;
 }
 

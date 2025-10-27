@@ -1,0 +1,86 @@
+/* Performance optimizations - No lag CSS */
+
+/* Hardware acceleration for smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Optimize will-change for common animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Simplified animations - faster */
+.simple-fade {
+  transition: opacity 0.2s ease;
+}
+
+.simple-scale {
+  transition: transform 0.2s ease;
+}
+
+.simple-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Remove expensive properties */
+.no-lag {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* GPU-accelerated transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize for mobile/low-end devices */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+  
+  .complex-gradient {
+    background: solid !important;
+    background-image: none !important;
+  }
+}
+
+/* Reduce motion for performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Content loading optimization */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 200px;
+}
+
+/* Simplified containers */
+.performance-container {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Fast hover effects */
+.fast-hover {
+  transition: background-color 0.1s ease;
+}
+
+.fast-hover:hover {
+  background-color: rgba(0,0,0,0.05);
+}

@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import { useProgress } from '../context/ProgressContext';
 
 function formatDuration(startTime, endTime) {
-  if (!startTime || !endTime) return 'Chưa xác định';
+  if (!startTime || !endTime) return 'Đang tính toán...';
   
   const durationMs = endTime - startTime;
   const minutes = Math.floor(durationMs / (1000 * 60));
@@ -15,19 +15,37 @@ function formatDuration(startTime, endTime) {
 }
 
 function formatDate(timestamp) {
-  if (!timestamp) return 'Chưa xác định';
-  return new Date(timestamp).toLocaleDateString('vi-VN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  if (!timestamp) return 'Đang cập nhật...';
+  try {
+    return new Date(timestamp).toLocaleDateString('vi-VN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  } catch {
+    return 'Không xác định';
+  }
 }
 
-export default function Certificate({ onClose }) {
-  const { playerName, startTimestamp, completionTimestamp } = useProgress();
+const Certificate = memo(function Certificate({ onClose }) {
+  const { playerName, startTimestamp, completionTimestamp, refreshPlayerData } = useProgress();
   const certificateRef = useRef();
+
+  // Debug log
+  console.log('🎓 Certificate data:', { 
+    playerName, 
+    startTimestamp, 
+    completionTimestamp,
+    startDate: startTimestamp ? new Date(startTimestamp) : null,
+    completionDate: completionTimestamp ? new Date(completionTimestamp) : null
+  });
+
+  const handleRefresh = () => {
+    console.log('🔄 Refreshing certificate data...');
+    refreshPlayerData();
+  };
 
   const handleDownload = () => {
     // Sử dụng html2canvas để tạo ảnh từ certificate
@@ -146,7 +164,7 @@ export default function Certificate({ onClose }) {
 
               <div className="bg-white rounded-2xl p-6 shadow-lg border-4 border-red-200">
                 <h3 className="text-3xl font-bold text-red-600 mb-2">
-                  {playerName || 'Người khám phá'}
+                  {playerName || 'Người khám phá ẩn danh'}
                 </h3>
                 <p className="text-lg text-gray-600">
                   đã hoàn thành xuất sắc hành trình khám phá
@@ -235,7 +253,13 @@ export default function Certificate({ onClose }) {
           </div>
 
           {/* Action buttons */}
-          <div className="flex justify-center gap-4 mt-6">
+          <div className="flex justify-center gap-3 mt-6">
+            <button
+              onClick={handleRefresh}
+              className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition flex items-center gap-2 text-sm"
+            >
+              🔄 Cập nhật tên
+            </button>
             <button
               onClick={handleDownload}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
@@ -259,4 +283,6 @@ export default function Certificate({ onClose }) {
       </div>
     </div>
   );
-}
+});
+
+export default Certificate;

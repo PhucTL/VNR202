@@ -1,173 +1,281 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HOME_CONTENT from '../data/homeContent';
 
-export default function Home() {
-  const { hero, partyFoundation, projectName, vision } = HOME_CONTENT;
+const Home = memo(() => {
   const [showForm, setShowForm] = useState(false);
   const [playerName, setPlayerName] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [existingPlayer, setExistingPlayer] = useState(null);
+  const [showPlayerChoice, setShowPlayerChoice] = useState(false);
   const navigate = useNavigate();
 
-  const handleStartExploring = () => {
-    if (playerName.trim()) {
-      // Lưu thông tin người chơi và thời gian bắt đầu
-      localStorage.setItem('playerName', playerName.trim());
-      localStorage.setItem('startTimestamp', Date.now().toString());
-      
-      // Hiển thị thông báo và chuyển trang
-      alert('Hãy hoàn thành hành trình khám phá 5 mốc để nhận chứng chỉ đặc biệt từ team!');
-      navigate('/main');
+  // Memoize content để tránh re-calculations
+  const { hero, partyFoundation, projectName, vision } = useMemo(() => HOME_CONTENT, []);
+
+  // Kiểm tra localStorage khi component load
+  useEffect(() => {
+    const savedName = localStorage.getItem('playerName');
+    const savedStart = localStorage.getItem('startTimestamp');
+    const savedProgress = localStorage.getItem('museum_progress_v2');
+    
+    if (savedName && (savedStart || savedProgress)) {
+      setExistingPlayer(savedName);
+      setShowPlayerChoice(true);
     }
-  };
+  }, []);
+
+  // Memoize callbacks để tránh re-renders
+  const handleStartExploring = useCallback(() => {
+    const trimmedName = playerName.trim();
+    
+    // Validate tên người dùng
+    if (!trimmedName) {
+      setNameError('Vui lòng nhập tên trước khi bắt đầu!');
+      setTimeout(() => setNameError(''), 3000);
+      return;
+    }
+    
+    if (trimmedName.length < 2) {
+      setNameError('Tên phải có ít nhất 2 ký tự!');
+      setTimeout(() => setNameError(''), 3000);
+      return;
+    }
+    
+    if (trimmedName.length > 50) {
+      setNameError('Tên không được quá 50 ký tự!');
+      setTimeout(() => setNameError(''), 3000);
+      return;
+    }
+
+    // Lưu thông tin người chơi và thời gian bắt đầu
+    localStorage.setItem('playerName', trimmedName);
+    localStorage.setItem('startTimestamp', Date.now().toString());
+    
+    navigate('/main');
+  }, [playerName, navigate]);
+
+  const handleContinueAsExisting = useCallback(() => {
+    navigate('/main');
+  }, [navigate]);
+
+  const handleStartNew = useCallback(() => {
+    // Xóa dữ liệu cũ và bắt đầu mới
+    localStorage.removeItem('playerName');
+    localStorage.removeItem('startTimestamp');
+    localStorage.removeItem('museum_progress_v2');
+    
+    setExistingPlayer(null);
+    setShowPlayerChoice(false);
+    setShowForm(true);
+  }, []);
 
   return (
     <div className="museum-content">
-      {/* Hero Section */}
-      <section className="hero-section mb-16">
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-red-600 mb-4">
+      {/* Hero Section - Simplified */}
+      <section className="hero-section mb-8">
+        <h1 className="text-4xl font-bold text-red-600 mb-3">
           {hero.title}
         </h1>
-        <h2 className="text-2xl sm:text-3xl text-slate-700 font-medium mb-4">
+        <h2 className="text-xl text-slate-700 mb-3">
           {hero.subtitle}
         </h2>
-        <p className="text-lg text-slate-600">
+        <p className="text-base text-slate-600">
           {hero.description}
         </p>
       </section>
 
-      {/* Party Foundation Section */}
-      <section className="foundation-section mb-16">
-        <h2 className="text-3xl font-bold text-red-700 mb-6">
-          {partyFoundation.title}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            {partyFoundation.content.map(item => (
-              <div key={item.id} className="bg-white/50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold text-red-800 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-slate-700">{item.text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="relative">
+      {/* Content Sections - Super Simplified */}
+      <section className="content-sections mb-8 space-y-6">
+        <div className="bg-white/70 p-4 rounded">
+          <h2 className="text-xl font-bold text-red-700 mb-3">
+            {partyFoundation.title}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              {partyFoundation.content.map(item => (
+                <div key={item.id}>
+                  <h3 className="font-semibold text-red-800 text-sm">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-700 text-xs">{item.text}</p>
+                </div>
+              ))}
+            </div>
             <img 
               src={partyFoundation.image} 
               alt="Thành lập Đảng"
-              className="rounded-lg shadow-xl w-full h-full object-cover"
+              className="rounded w-full h-128 object-cover"
+              loading="lazy"
+              onError={(e) => {
+                e.target.src = '/assets/suradoicuaDCSVN.png';
+                e.target.style.backgroundColor = '#f3f4f6';
+              }}
             />
           </div>
         </div>
-      </section>
 
-      {/* Project Name Section */}
-      <section className="project-name-section mb-16">
-        <h2 className="text-3xl font-bold text-red-700 mb-6">
-          {projectName.title}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative">
+        <div className="bg-white/70 p-4 rounded">
+          <h2 className="text-xl font-bold text-red-700 mb-3">
+            {projectName.title}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
             <img 
               src={projectName.image} 
               alt="Dấu ấn Cách mạng"
-              className="rounded-lg shadow-xl w-full h-full object-cover"
+              className="rounded w-full h-128 object-cover"
+              loading="lazy"
+              onError={(e) => {
+                e.target.src = '/assets/cachmang.png';
+                e.target.style.backgroundColor = '#f3f4f6';
+              }}
             />
-          </div>
-          <div className="space-y-6">
-            {projectName.content.map(item => (
-              <div key={item.id} className="bg-white/50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold text-red-800 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-slate-700">{item.text}</p>
-              </div>
-            ))}
+            <div className="space-y-2">
+              {projectName.content.map(item => (
+                <div key={item.id}>
+                  <h3 className="font-semibold text-red-800 text-sm">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-700 text-xs">{item.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Vision Section */}
-      <section className="vision-section">
-        <h2 className="text-3xl font-bold text-red-700 mb-6">
-          {vision.title}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            {vision.content.map(item => (
-              <div key={item.id} className="bg-white/50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold text-red-800 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-slate-700">{item.text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="relative">
+        <div className="bg-white/70 p-4 rounded">
+          <h2 className="text-xl font-bold text-red-700 mb-3">
+            {vision.title}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              {vision.content.map(item => (
+                <div key={item.id}>
+                  <h3 className="font-semibold text-red-800 text-sm">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-700 text-xs">{item.text}</p>
+                </div>
+              ))}
+            </div>
             <img 
               src={vision.image} 
               alt="Tầm nhìn và Mục tiêu"
-              className="rounded-lg shadow-xl w-full h-full object-cover"
+              className="rounded w-full h-128 object-cover"
+              loading="lazy"
+              onError={(e) => {
+                e.target.src = '/assets/tamnhinDCSVN.png';
+                e.target.style.backgroundColor = '#f3f4f6';
+              }}
             />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="cta-section mt-16 text-center">
-        {!showForm ? (
-          <div className="bg-gradient-to-r from-red-500 to-red-700 text-white p-8 rounded-2xl shadow-xl">
-            <h2 className="text-3xl font-bold mb-4">🏛️ Hành trình Khám phá Bảo tàng Ảo</h2>
-            <p className="text-xl mb-6">
-              Khám phá 5 mốc lịch sử quan trọng và nhận chứng chỉ hoàn thành đặc biệt!
-            </p>
+      {/* CTA Section - Ultra Simplified */}
+      <section className="cta-section mt-8 text-center">
+        <div className="bg-red-500 text-white p-4 rounded mb-4">
+          <h2 className="text-xl font-bold mb-2">🏛️ Khám phá Bảo tàng Ảo</h2>
+          <p className="mb-3">
+            Khám phá 5 mốc lịch sử và nhận chứng chỉ hoàn thành!
+          </p>
+          {!showForm && !showPlayerChoice && (
             <button
               onClick={() => setShowForm(true)}
-              className="inline-block px-8 py-4 bg-white text-red-600 text-lg font-semibold rounded-xl shadow-md hover:bg-red-50 transition-transform transform hover:scale-105"
+              className="px-4 py-2 bg-white text-red-600 font-semibold rounded fast-hover"
             >
               🚀 Khám phá ngay
             </button>
-          </div>
-        ) : (
-          <div className="bg-white border-2 border-red-200 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
-            <h3 className="text-2xl font-bold text-red-600 mb-4">🎯 Bắt đầu hành trình</h3>
-            <p className="text-gray-600 mb-6">
-              Nhập tên của bạn để bắt đầu khám phá và nhận chứng chỉ hoàn thành:
-            </p>
-            <input
-              type="text"
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-              placeholder="Nhập tên của bạn..."
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none mb-4 text-lg"
-              onKeyPress={(e) => e.key === 'Enter' && handleStartExploring()}
-            />
-            <div className="flex gap-3">
+          )}
+        </div>
+
+        {/* Player Choice - Ultra Simplified */}
+        {showPlayerChoice && (
+          <div className="bg-blue-50 border border-blue-200 p-4 rounded max-w-md mx-auto mb-4">
+            <h3 className="text-lg font-bold text-blue-800 mb-2 text-center">
+              👋 Chào mừng trở lại!
+            </h3>
+            
+            <div className="bg-white p-3 rounded border mb-3">
+              <p className="text-gray-700 text-sm">Tên đã lưu:</p>
+              <p className="text-base font-bold text-blue-600">
+                🎯 {existingPlayer}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
               <button
-                onClick={handleStartExploring}
-                disabled={!playerName.trim()}
-                className="flex-1 px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                onClick={handleContinueAsExisting}
+                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded text-sm font-semibold"
               >
-                🎯 Bắt đầu khám phá
+                ✅ Tiếp tục
               </button>
               <button
-                onClick={() => setShowForm(false)}
-                className="px-4 py-3 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition"
+                onClick={handleStartNew}
+                className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded text-sm font-semibold"
               >
-                Hủy
+                🆕 Bắt đầu mới
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Form - Ultra Simplified */}
+        {showForm && (
+          <div className="bg-white border border-gray-200 p-4 rounded max-w-sm mx-auto">
+            <h3 className="text-lg font-bold text-gray-800 mb-3 text-center">
+              🎯 Bắt đầu khám phá
+            </h3>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Tên của bạn <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={playerName}
+                onChange={(e) => {
+                  setPlayerName(e.target.value);
+                  if (nameError) setNameError('');
+                }}
+                placeholder="Nhập tên của bạn"
+                className={`w-full px-3 py-2 border ${nameError ? 'border-red-400' : 'border-gray-300'} rounded focus:border-blue-500 focus:outline-none text-sm`}
+                onKeyPress={(e) => e.key === 'Enter' && handleStartExploring()}
+                maxLength={50}
+              />
+              
+              {nameError && (
+                <p className="text-red-600 text-xs mt-1">
+                  ⚠️ {nameError}
+                </p>
+              )}
+            </div>
+
+            <div className="flex justify-center gap-2">
+              <button
+                onClick={handleStartExploring}
+                disabled={!playerName.trim() || playerName.trim().length < 2}
+                className="px-3 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white text-sm font-semibold rounded disabled:cursor-not-allowed"
+              >
+                🧭 Bắt đầu
+              </button>
+              <button
+                onClick={() => {
+                  setShowForm(false);
+                  setPlayerName('');
+                  setNameError('');
+                  if (existingPlayer) setShowPlayerChoice(true);
+                }}
+                className="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 text-sm rounded"
+              >
+                ← Quay lại
               </button>
             </div>
           </div>
         )}
       </section>
-
-    <Link
-        to="/main"
-        className="inline-block mt-10 px-6 py-3 bg-red-600 text-white text-lg font-semibold rounded-xl shadow-md hover:bg-red-700 transition-transform transform hover:scale-105"
-        >
-        🚀 Khám phá ngay (Cũ)
-    </Link>
-
     </div>
   );
-}
+});
+
+export default Home;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProgress } from '../context/ProgressContext';
 import TIMELINE from '../data/timeline';
 import Certificate from './Certificate';
@@ -18,14 +18,15 @@ const PuzzleUnlock = () => {
   const unlockedPhases = TIMELINE.filter(phase => {
     const allMilestonesUnlocked = phase.milestones.every(milestone => unlockedPieces.includes(milestone.id));
     console.log(`Phase ${phase.yearRange}:`, phase.milestones.map(m => m.id), 'Unlocked:', allMilestonesUnlocked);
-    
-    // Mark phase as complete if all milestones are unlocked
-    if (allMilestonesUnlocked) {
-      markPhaseComplete(phase.id || phase.yearRange);
-    }
-    
     return allMilestonesUnlocked;
   });
+
+  // Use useEffect to mark phases as complete
+  useEffect(() => {
+    unlockedPhases.forEach(phase => {
+      markPhaseComplete(phase.id || phase.yearRange);
+    });
+  }, [unlockedPhases.length, markPhaseComplete]);
   
   const progress = (unlockedPhases.length / totalPhases) * 100;
   const isCompletedLocal = unlockedPhases.length === totalPhases;
@@ -261,6 +262,8 @@ const PuzzleUnlock = () => {
               className="px-3 py-1 bg-red-500 text-white rounded text-sm"
               onClick={() => {
                 localStorage.removeItem('museum_progress_v2');
+                localStorage.removeItem('playerName');
+                localStorage.removeItem('startTimestamp');
                 window.location.reload();
               }}
             >
@@ -279,11 +282,26 @@ const PuzzleUnlock = () => {
             <button 
               className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
               onClick={() => {
-                console.log('Current unlockedPieces:', unlockedPieces);
+                console.log('Current state:', { unlockedPieces, completedPhases, isCompleted, playerName, startTimestamp, completionTimestamp });
                 console.log('All milestone IDs:', TIMELINE.flatMap(phase => phase.milestones.map(m => m.id)));
               }}
             >
               Log State
+            </button>
+            <button 
+              className="px-3 py-1 bg-purple-500 text-white rounded text-sm"
+              onClick={() => {
+                // Test completion manually
+                if (!playerName) {
+                  localStorage.setItem('playerName', 'Test User');
+                }
+                if (!startTimestamp) {
+                  localStorage.setItem('startTimestamp', (Date.now() - 60000).toString());
+                }
+                window.location.reload();
+              }}
+            >
+              Set Test Data
             </button>
           </div>
         </div>

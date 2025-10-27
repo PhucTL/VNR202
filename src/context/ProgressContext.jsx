@@ -26,8 +26,35 @@ export function ProgressProvider({ children }) {
     // Load player info from separate localStorage items
     const name = localStorage.getItem('playerName');
     const start = localStorage.getItem('startTimestamp');
+    
+    console.log('📊 Loading from localStorage:', { name, start });
+    
     if (name) setPlayerName(name);
     if (start) setStartTimestamp(parseInt(start));
+  }, []);
+
+  // Listen for localStorage changes (when user updates name)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const name = localStorage.getItem('playerName');
+      const start = localStorage.getItem('startTimestamp');
+      
+      console.log('🔄 Storage changed - updating playerName:', name);
+      
+      if (name) setPlayerName(name);
+      if (start) setStartTimestamp(parseInt(start));
+    };
+
+    // Listen for storage events (from other tabs/windows)
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for focus events (when user comes back to tab)
+    window.addEventListener('focus', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('focus', handleStorageChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -49,9 +76,28 @@ export function ProgressProvider({ children }) {
     setCompletedPhases((s) => (s.includes(phaseId) ? s : [...s, phaseId]));
   };
 
+  // Function to manually refresh player data
+  const refreshPlayerData = () => {
+    const name = localStorage.getItem('playerName');
+    const start = localStorage.getItem('startTimestamp');
+    
+    console.log('🔄 Manual refresh - playerName:', name);
+    
+    if (name) setPlayerName(name);
+    if (start) setStartTimestamp(parseInt(start));
+  };
+
   // Detect completion and set timestamp
   useEffect(() => {
     const isCompleted = completedPhases.length === TIMELINE.length;
+    console.log('🔍 Completion check:', { 
+      completedPhases: completedPhases.length, 
+      totalPhases: TIMELINE.length, 
+      isCompleted,
+      completionTimestamp,
+      startTimestamp 
+    });
+    
     if (isCompleted && !completionTimestamp && startTimestamp) {
       const timestamp = Date.now();
       setCompletionTimestamp(timestamp);
@@ -67,6 +113,7 @@ export function ProgressProvider({ children }) {
     completionTimestamp,
     playerName,
     startTimestamp,
+    refreshPlayerData,
     isCompleted: completedPhases.length === TIMELINE.length
   };
 
