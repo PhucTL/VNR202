@@ -10,9 +10,10 @@ const TIMELINE = [
         id: 'p1-m1',
         title: 'Thành lập Đảng Cộng sản Việt Nam',
         category: 'event',
-        type: 'image',
+        type: 'video',
         src: '/assets/p1-1.jpg',
         caption: 'Hội nghị thành lập Đảng tại Hồng Kông ngày 3/2/1930',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
         details: {
           date: '3/2/1930',
           location: 'Hồng Kông',
@@ -20,11 +21,6 @@ const TIMELINE = [
           keyFigures: ['Nguyễn Ái Quốc'],
           historicalContext: 'Trong bối cảnh phong trào cách mạng thế giới và nhu cầu giải phóng dân tộc'
         },
-        gallery: [
-          { src: '/assets/p1-1.jpg', caption: 'Hội nghị thành lập Đảng tại Hồng Kông ngày 3/2/1930' },
-          { src: '/assets/p1-1.jpg', caption: 'Nguyễn Ái Quốc chủ trì việc thành lập Đảng' },
-          { src: '/assets/p1-1.jpg', caption: 'Cương lĩnh chính trị đầu tiên của Đảng' }
-        ],
         audioText: `Ngày 3 tháng 2 năm 1930, tại Hồng Kông, dưới sự chủ trì của Nguyễn Ái Quốc, 
         Đảng Cộng sản Việt Nam chính thức ra đời. Đây là sự kiện có ý nghĩa lịch sử vô cùng quan trọng, 
         đánh dấu bước ngoặt mới trong cuộc đấu tranh giải phóng dân tộc của nhân dân Việt Nam.
@@ -70,19 +66,15 @@ const TIMELINE = [
         id: 'p2-m1',
         title: 'Cách mạng Tháng Tám 1945',
         category: 'event',
-        type: 'image',
+        type: 'video',
         src: '/assets/p2-1.jpg',
         caption: 'Nhân dân Việt Nam đứng lên giành chính quyền',
+        videoUrl: 'https://www.youtube.com/embed/xyz123456',
         details: {
           date: 'Tháng 8/1945',
           significance: 'Giành được chính quyền, thành lập nước Việt Nam Dân chủ Cộng hòa',
           outcome: 'Kết thúc ách thống trị thực dân phong kiến'
         },
-        gallery: [
-          { src: '/assets/p2-1.jpg', caption: 'Nhân dân Việt Nam đứng lên giành chính quyền trong Cách mạng Tháng Tám' },
-          { src: '/assets/p2-1.jpg', caption: 'Lực lượng cách mạng tiến vào Hà Nội ngày 19/8/1945' },
-          { src: '/assets/p2-1.jpg', caption: 'Chính quyền cách mạng được thành lập trên cả nước' }
-        ],
         audioText: `Cách mạng Tháng Tám năm 1945 là cuộc cách mạng vĩ đại của nhân dân Việt Nam.
         Dưới sự lãnh đạo của Đảng Cộng sản Việt Nam và Chủ tịch Hồ Chí Minh, nhân dân ta đã đứng lên
         giành chính quyền từ tay thực dân Pháp và phong kiến. Ngày 19 tháng 8, Hà Nội được giải phóng.
@@ -128,20 +120,16 @@ const TIMELINE = [
         id: 'p3-m1',
         title: 'Chiến thắng Điện Biên Phủ',
         category: 'event',
-        type: 'image',
+        type: 'video',
         src: '/assets/p3-1.jpg',
         caption: 'Chiến thắng "lừng lẫy năm châu, chấn động địa cầu"',
+        videoUrl: 'https://www.youtube.com/embed/abc789xyz',
         details: {
           date: '7/5/1954',
           significance: 'Kết thúc ách thống trị thực dân Pháp tại Đông Dương',
           commander: 'Đại tướng Võ Nguyên Giáp',
           outcome: 'Mở đường cho đàm phán Hiệp định Genève'
         },
-        gallery: [
-          { src: '/assets/p3-1.jpg', caption: 'Chiến thắng Điện Biên Phủ - "lừng lẫy năm châu, chấn động địa cầu"' },
-          { src: '/assets/p3-1.jpg', caption: 'Quân và dân ta chuẩn bị cho trận quyết chiến' },
-          { src: '/assets/p3-1.jpg', caption: 'Lá cờ Tổ quốc tung bay trên đồi A1 Điện Biên Phủ' }
-        ],
         audioText: `Chiến thắng Điện Biên Phủ ngày 7 tháng 5 năm 1954 là một chiến thắng có ý nghĩa lịch sử to lớn.
         Dưới sự chỉ huy tài tình của Đại tướng Võ Nguyên Giáp, quân và dân ta đã đánh bại hoàn toàn
         tập đoàn cứ điểm Điện Biên Phủ của thực dân Pháp. Chiến thắng này đã "lừng lẫy năm châu, chấn động địa cầu",

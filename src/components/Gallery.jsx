@@ -105,7 +105,7 @@ export default function Gallery({ phase, phaseIndex }) {
       {active && <ModalMedia item={active} onClose={close} />}
 
       {showQuizFor !== null && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 pb-[800px]" onClick={close}>
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={close}>
           <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="p-6 border-b border-slate-200">
               <h3 className="font-bold text-slate-900 text-lg">🧠 Quiz: {phase.title}</h3>

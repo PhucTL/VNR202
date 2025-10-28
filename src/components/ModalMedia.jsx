@@ -13,14 +13,13 @@ const categoryLabels = {
 };
 
 export default function ModalMedia({ item, onClose }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   if (!item) return null;
 
   const category = item.category || 'event';
   const details = item.details || {};
-  const gallery = item.gallery || [{ src: item.src, caption: item.caption }];
+  const hasVideo = item.videoUrl && item.videoUrl.trim();
 
   // Enhanced onClose để dừng audio khi đóng modal
   const handleClose = () => {
@@ -28,31 +27,6 @@ export default function ModalMedia({ item, onClose }) {
     setIsAudioPlaying(false);
     onClose();
   };
-
-  // Navigation functions
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (gallery.length <= 1) return;
-      
-      if (e.key === 'ArrowLeft') {
-        prevImage();
-      } else if (e.key === 'ArrowRight') {
-        nextImage();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gallery.length]);
 
   // Cleanup audio khi component unmount
   useEffect(() => {
@@ -143,8 +117,8 @@ export default function ModalMedia({ item, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-start pt-[500px] z-50 overflow-y-auto" onClick={handleClose}>
-      <div className="bg-white rounded-2xl overflow-hidden max-w-5xl w-full max-h-[95vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 overflow-y-auto p-4" onClick={handleClose}>
+      <div className="bg-white rounded-2xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
         
         {/* Header */}
         <div className="relative p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -241,96 +215,52 @@ export default function ModalMedia({ item, onClose }) {
             </div>
           )}
 
-          {/* Image Gallery */}
+          {/* Media Content - Ảnh hoặc Video */}
           <div className="mb-8">
             <div className="relative group">
-              <img 
-                src={gallery[currentImageIndex].src} 
-                alt={gallery[currentImageIndex].caption} 
-                className="w-full h-[32rem] object-cover rounded-2xl shadow-2xl bg-slate-100 transition-all duration-300" 
-              />
+              {hasVideo ? (
+                /* Video Player */
+                <div className="w-full h-[32rem] rounded-2xl overflow-hidden shadow-2xl bg-slate-100">
+                  <iframe
+                    src={item.videoUrl}
+                    title={item.title}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              ) : (
+                /* Single Image */
+                <img 
+                  src={item.src} 
+                  alt={item.caption} 
+                  className="w-full h-[32rem] object-cover rounded-2xl shadow-2xl bg-slate-100 transition-all duration-300"
+                  onError={(e) => {
+                    e.target.src = '/assets/placeholder.jpg';
+                    e.target.style.backgroundColor = '#f3f4f6';
+                  }}
+                />
+              )}
               
               {/* Gradient overlay for better text visibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/5 rounded-2xl pointer-events-none"></div>
               
-              {/* Navigation arrows */}
-              {gallery.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm text-slate-700 hover:bg-white rounded-2xl hover:scale-110 transition-all flex items-center justify-center text-2xl font-bold shadow-2xl"
-                  >
-                    ←
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm text-slate-700 hover:bg-white rounded-2xl hover:scale-110 transition-all flex items-center justify-center text-2xl font-bold shadow-2xl"
-                  >
-                    →
-                  </button>
-                </>
-              )}
-
-              {/* Image counter */}
-              {gallery.length > 1 && (
-                <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm text-slate-800 px-4 py-2 rounded-2xl text-sm font-bold shadow-xl">
-                  <span className="text-blue-500">📸</span> {currentImageIndex + 1}/{gallery.length}
-                </div>
-              )}
+              {/* Media type indicator */}
+              <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm text-slate-800 px-4 py-2 rounded-2xl text-sm font-bold shadow-xl">
+                <span className={hasVideo ? "text-red-500" : "text-blue-500"}>
+                  {hasVideo ? "🎬" : "📸"}
+                </span> 
+                {hasVideo ? "Video" : "Ảnh"}
+              </div>
             </div>
 
-            {/* Current image caption */}
+            {/* Media caption */}
             <div className="mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-200">
               <p className="text-center text-slate-700 text-lg font-medium leading-relaxed">
-                {gallery[currentImageIndex].caption}
+                {item.caption}
               </p>
             </div>
-
-            {/* Navigation hint */}
-            {gallery.length > 1 && (
-              <div className="mt-4 text-center">
-                <p className="text-slate-400 text-sm bg-slate-100 inline-block px-4 py-2 rounded-full">
-                  💡 Dùng phím ← → hoặc click để xem thêm ảnh
-                </p>
-              </div>
-            )}
-
-            {/* Thumbnail navigation */}
-            {gallery.length > 1 && (
-              <div className="mt-6 bg-gradient-to-br from-slate-50 to-slate-100 p-6 rounded-2xl border border-slate-200">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="text-2xl">📷</span>
-                  <h4 className="text-slate-700 font-bold">Bộ sưu tập ảnh</h4>
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">
-                    {gallery.length} ảnh
-                  </span>
-                </div>
-                <div className="flex justify-center gap-4 overflow-x-auto pb-2">
-                  {gallery.map((img, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-3 transition-all transform hover:scale-110 relative ${
-                        index === currentImageIndex 
-                          ? 'border-blue-500 shadow-xl ring-4 ring-blue-200' 
-                          : 'border-slate-300 hover:border-blue-400 shadow-lg'
-                      }`}
-                    >
-                      <img 
-                        src={img.src} 
-                        alt={img.caption} 
-                        className="w-full h-full object-cover"
-                      />
-                      {index === currentImageIndex && (
-                        <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                          <span className="text-white text-lg">✓</span>
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Details Section */}

@@ -72,40 +72,44 @@ const Home = memo(() => {
 
   return (
     <div className="museum-content">
-      {/* Hero Section - Simplified */}
-      <section className="hero-section mb-8">
-        <h1 className="text-4xl font-bold text-red-600 mb-3">
-          {hero.title}
-        </h1>
-        <h2 className="text-xl text-slate-700 mb-3">
-          {hero.subtitle}
-        </h2>
-        <p className="text-base text-slate-600">
-          {hero.description}
-        </p>
+      {/* Hero Section - Tối ưu hóa */}
+      <section className="hero-section mb-12">
+        <div className="text-center space-y-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-red-700 mb-4">
+            {hero.title}
+          </h1>
+          <h2 className="text-2xl md:text-3xl text-red-600 font-semibold mb-4">
+            {hero.subtitle}
+          </h2>
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            {hero.description}
+          </p>
+        </div>
       </section>
 
-      {/* Content Sections - Super Simplified */}
-      <section className="content-sections mb-8 space-y-6">
-        <div className="bg-white/70 p-4 rounded">
-          <h2 className="text-xl font-bold text-red-700 mb-3">
+      {/* Content Sections - UI đẹp hơn */}
+      <section className="content-sections mb-12 space-y-8">
+        <div className="bg-white bg-opacity-95 p-6 rounded-xl shadow-lg border border-red-100">
+          <h2 className="text-2xl font-bold text-red-700 mb-6 text-center">
             {partyFoundation.title}
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div className="space-y-4">
               {partyFoundation.content.map(item => (
-                <div key={item.id}>
-                  <h3 className="font-semibold text-red-800 text-sm">
+                <div key={item.id} className="bg-red-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-red-800 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-700 text-xs">{item.text}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
             <img 
               src={partyFoundation.image} 
               alt="Thành lập Đảng"
-              className="rounded w-full h-128 object-cover"
+              className="rounded-xl w-full h-128 object-cover shadow-md"
               loading="lazy"
               onError={(e) => {
                 e.target.src = '/assets/suradoicuaDCSVN.png';
@@ -115,53 +119,57 @@ const Home = memo(() => {
           </div>
         </div>
 
-        <div className="bg-white/70 p-4 rounded">
-          <h2 className="text-xl font-bold text-red-700 mb-3">
+        <div className="bg-white bg-opacity-95 p-6 rounded-xl shadow-lg border border-orange-100">
+          <h2 className="text-2xl font-bold text-red-700 mb-6 text-center">
             {projectName.title}
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
             <img 
               src={projectName.image} 
               alt="Dấu ấn Cách mạng"
-              className="rounded w-full h-128 object-cover"
+              className="rounded-xl w-full h-128 object-cover shadow-md order-2 md:order-1"
               loading="lazy"
               onError={(e) => {
                 e.target.src = '/assets/cachmang.png';
                 e.target.style.backgroundColor = '#f3f4f6';
               }}
             />
-            <div className="space-y-2">
+            <div className="space-y-4 order-1 md:order-2">
               {projectName.content.map(item => (
-                <div key={item.id}>
-                  <h3 className="font-semibold text-red-800 text-sm">
+                <div key={item.id} className="bg-orange-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-red-800 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-700 text-xs">{item.text}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="bg-white/70 p-4 rounded">
-          <h2 className="text-xl font-bold text-red-700 mb-3">
+        <div className="bg-white bg-opacity-95 p-6 rounded-xl shadow-lg border border-yellow-100">
+          <h2 className="text-2xl font-bold text-red-700 mb-6 text-center">
             {vision.title}
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div className="space-y-4">
               {vision.content.map(item => (
-                <div key={item.id}>
-                  <h3 className="font-semibold text-red-800 text-sm">
+                <div key={item.id} className="bg-yellow-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-red-800 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-700 text-xs">{item.text}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
             <img 
               src={vision.image} 
               alt="Tầm nhìn và Mục tiêu"
-              className="rounded w-full h-128 object-cover"
+              className="rounded-xl w-full h-128 object-cover shadow-md"
               loading="lazy"
               onError={(e) => {
                 e.target.src = '/assets/tamnhinDCSVN.png';
@@ -172,47 +180,47 @@ const Home = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section - Ultra Simplified */}
-      <section className="cta-section mt-8 text-center">
-        <div className="bg-red-500 text-white p-4 rounded mb-4">
-          <h2 className="text-xl font-bold mb-2">🏛️ Khám phá Bảo tàng Ảo</h2>
-          <p className="mb-3">
-            Khám phá 5 mốc lịch sử và nhận chứng chỉ hoàn thành!
+      {/* CTA Section - UI thân thiện */}
+      <section className="cta-section mt-12 text-center">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-8 rounded-2xl shadow-xl mb-8">
+          <h2 className="text-3xl font-bold mb-4">🏛️ Khám phá Bảo tàng Ảo</h2>
+          <p className="text-xl mb-6 opacity-95">
+            Khám phá 5 mốc lịch sử quan trọng và nhận chứng chỉ hoàn thành đặc biệt!
           </p>
           {!showForm && !showPlayerChoice && (
             <button
               onClick={() => setShowForm(true)}
-              className="px-4 py-2 bg-white text-red-600 font-semibold rounded fast-hover"
+              className="bg-white text-red-600 px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
-              🚀 Khám phá ngay
+              🚀 Bắt đầu khám phá ngay
             </button>
           )}
         </div>
 
-        {/* Player Choice - Ultra Simplified */}
+        {/* Player Choice - UI cải tiến */}
         {showPlayerChoice && (
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded max-w-md mx-auto mb-4">
-            <h3 className="text-lg font-bold text-blue-800 mb-2 text-center">
+          <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-200 p-6 rounded-2xl max-w-lg mx-auto mb-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-800 mb-4">
               👋 Chào mừng trở lại!
             </h3>
             
-            <div className="bg-white p-3 rounded border mb-3">
-              <p className="text-gray-700 text-sm">Tên đã lưu:</p>
-              <p className="text-base font-bold text-blue-600">
+            <div className="bg-white p-4 rounded-xl border border-blue-200 mb-6">
+              <p className="text-gray-600 text-sm mb-1">Tên đã lưu:</p>
+              <p className="text-xl font-bold text-blue-700">
                 🎯 {existingPlayer}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={handleContinueAsExisting}
-                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded text-sm font-semibold"
+                className="bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
               >
-                ✅ Tiếp tục
+                ✅ Tiếp tục hành trình
               </button>
               <button
                 onClick={handleStartNew}
-                className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded text-sm font-semibold"
+                className="bg-orange-600 hover:bg-orange-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
               >
                 🆕 Bắt đầu mới
               </button>
@@ -220,15 +228,15 @@ const Home = memo(() => {
           </div>
         )}
 
-        {/* Form - Ultra Simplified */}
+        {/* Form - UI thân thiện */}
         {showForm && (
-          <div className="bg-white border border-gray-200 p-4 rounded max-w-sm mx-auto">
-            <h3 className="text-lg font-bold text-gray-800 mb-3 text-center">
-              🎯 Bắt đầu khám phá
+          <div className="bg-white border-2 border-gray-200 p-8 rounded-2xl max-w-md mx-auto shadow-xl">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              🎯 Bắt đầu hành trình khám phá
             </h3>
 
-            <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+            <div className="mb-6">
+              <label className="block text-lg font-medium text-gray-700 mb-3">
                 Tên của bạn <span className="text-red-500">*</span>
               </label>
               <input
@@ -239,25 +247,25 @@ const Home = memo(() => {
                   if (nameError) setNameError('');
                 }}
                 placeholder="Nhập tên của bạn"
-                className={`w-full px-3 py-2 border ${nameError ? 'border-red-400' : 'border-gray-300'} rounded focus:border-blue-500 focus:outline-none text-sm`}
+                className={`w-full px-4 py-3 border-2 ${nameError ? 'border-red-400' : 'border-gray-300'} rounded-xl outline-none focus:border-red-500 transition-colors duration-200 text-lg`}
                 onKeyPress={(e) => e.key === 'Enter' && handleStartExploring()}
                 maxLength={50}
               />
               
               {nameError && (
-                <p className="text-red-600 text-xs mt-1">
+                <p className="text-red-600 text-sm mt-2">
                   ⚠️ {nameError}
                 </p>
               )}
             </div>
 
-            <div className="flex justify-center gap-2">
+            <div className="flex gap-4">
               <button
                 onClick={handleStartExploring}
                 disabled={!playerName.trim() || playerName.trim().length < 2}
-                className="px-3 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white text-sm font-semibold rounded disabled:cursor-not-allowed"
+                className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white py-3 px-6 rounded-xl font-semibold disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
               >
-                🧭 Bắt đầu
+                🧭 Bắt đầu khám phá
               </button>
               <button
                 onClick={() => {
@@ -266,7 +274,7 @@ const Home = memo(() => {
                   setNameError('');
                   if (existingPlayer) setShowPlayerChoice(true);
                 }}
-                className="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 text-sm rounded"
+                className="px-6 py-3 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
               >
                 ← Quay lại
               </button>

@@ -34,14 +34,6 @@ const Main = memo(() => {
             Lịch sử Đảng Cộng sản Việt Nam 1930–nay
           </div>
         </div>
-        <nav className="flex gap-2">
-          <button className="px-3 py-2 bg-red-100 rounded text-red-700 font-semibold hover:bg-red-200">
-            🎯 Khám phá
-          </button>
-          <button className="px-3 py-2 bg-blue-100 rounded text-blue-700 font-semibold hover:bg-blue-200">
-            📚 Bộ sưu tập
-          </button>
-        </nav>
       </header>
 
       <main className="space-y-6">        
