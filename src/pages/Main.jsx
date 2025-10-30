@@ -34,6 +34,18 @@ const Main = memo(() => {
             Lịch sử Đảng Cộng sản Việt Nam 1930–nay
           </div>
         </div>
+        <div className="flex justify-center sm:justify-end mt-4 sm:mt-0">
+          <a
+            href="https://dauancachmang-3dmuseum.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-elegant flex items-center gap-2 px-6 py-3 text-lg font-bold rounded-2xl shadow-lg hover:scale-105 transition-all"
+            style={{ background: 'linear-gradient(90deg, #dc2626, #f97316, #eab308)', color: '#fff' }}
+          >
+            <span role="img" aria-label="3D">🧊</span>
+            Truy cập Bảo tàng 3D
+          </a>
+        </div>
       </header>
 
       <main className="space-y-6">        
