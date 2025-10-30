@@ -115,10 +115,20 @@ export default function ModalMedia({ item, onClose }) {
       speak();
     }
   };
+  // Chuyển link YouTube watch → embed
+function getYouTubeEmbedUrl(url) {
+  if (!url) return '';
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}`;
+  }
+  return url; // giữ nguyên nếu không phải link YouTube
+}
+
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 overflow-y-auto p-4" onClick={handleClose}>
-      <div className="bg-white rounded-2xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 overflow-y-auto p-4 mb-[550px]" onClick={handleClose}>
+      <div className="bg-white rounded-2xl overflow-hidden max-w-5xl w-full max-h-[97vh] overflow-y-auto shadow-2xl " onClick={(e) => e.stopPropagation()}>
         
         {/* Header */}
         <div className="relative p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -222,13 +232,13 @@ export default function ModalMedia({ item, onClose }) {
                 /* Video Player */
                 <div className="w-full h-[32rem] rounded-2xl overflow-hidden shadow-2xl bg-slate-100">
                   <iframe
-                    src={item.videoUrl}
-                    title={item.title}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  src={getYouTubeEmbedUrl(item.videoUrl)}
+                  title={item.title}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
                 </div>
               ) : (
                 /* Single Image */

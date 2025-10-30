@@ -96,8 +96,8 @@ const Certificate = memo(function Certificate({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-[600px]">
+    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 ">
+      <div className="bg-white rounded-2xl shadow-2xl w-[600px] mt-[1800px]">
         {/* Header */}
         <div className="border-b border-gray-200 flex justify-between items-center p-4">
           <h2 className="text-lg font-bold text-gray-800">📜 Chứng chỉ hoàn thành</h2>

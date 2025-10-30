@@ -70,7 +70,16 @@ export default function Gallery({ phase, phaseIndex }) {
                   </>
                 ) : (
                   <div className="text-base text-slate-600 font-medium flex items-center justify-center">
-                    {milestone.type === 'audio' ? '🎵' : '🎬'} {milestone.type.toUpperCase()}
+                    <img 
+                      src={milestone.src} 
+                      alt={milestone.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }} 
+                    />
+                    
                   </div>
                 )}
                 

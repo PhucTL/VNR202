@@ -11,9 +11,9 @@ const TIMELINE = [
         title: 'Thành lập Đảng Cộng sản Việt Nam',
         category: 'event',
         type: 'video',
-        src: '/assets/p1-1.jpg',
+        src: '/assets/phan1-1.png',
         caption: 'Hội nghị thành lập Đảng tại Hồng Kông ngày 3/2/1930',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/watch?v=C3-HHefTxWc',
         details: {
           date: '3/2/1930',
           location: 'Hồng Kông',
@@ -21,38 +21,32 @@ const TIMELINE = [
           keyFigures: ['Nguyễn Ái Quốc'],
           historicalContext: 'Trong bối cảnh phong trào cách mạng thế giới và nhu cầu giải phóng dân tộc'
         },
-        audioText: `Ngày 3 tháng 2 năm 1930, tại Hồng Kông, dưới sự chủ trì của Nguyễn Ái Quốc, 
-        Đảng Cộng sản Việt Nam chính thức ra đời. Đây là sự kiện có ý nghĩa lịch sử vô cùng quan trọng, 
-        đánh dấu bước ngoặt mới trong cuộc đấu tranh giải phóng dân tộc của nhân dân Việt Nam.
-        Đảng đã đưa ra Cương lĩnh chính trị đầu tiên, xác định rõ mục tiêu cách mạng dân tộc dân chủ nhân dân.`
-      },
+        audioText: `Năm 1930, sau gần một thế kỷ bị thực dân Pháp đô hộ, các phong trào yêu nước ở Việt Nam lần lượt thất bại, đất nước rơi vào khủng hoảng sâu sắc về đường lối cứu nước. Trong bối cảnh đó, Nguyễn Ái Quốc đã ra đi tìm đường giải phóng dân tộc. Năm 1920, khi tiếp cận Luận cương của Lênin, Người khẳng định con đường cứu nước đúng đắn là con đường cách mạng vô sản.
+                    Từ năm 1925, Nguyễn Ái Quốc tích cực truyền bá chủ nghĩa Mác - Lênin vào Việt Nam, sáng lập Hội Việt Nam Cách mạng Thanh niên và xuất bản tác phẩm Đường cách mệnh, đặt nền tảng tư tưởng cho phong trào cách mạng mới. Đến năm 1929, sự phát triển mạnh mẽ của phong trào cách mạng đã dẫn đến sự ra đời của ba tổ chức cộng sản riêng rẽ, đặt ra yêu cầu cấp thiết phải thống nhất thành một đảng duy nhất.
+                    Từ ngày 6 tháng 1 đến 7 tháng 2 năm 1930, dưới sự chủ trì của Nguyễn Ái Quốc tại Cửu Long, Hồng Kông, Hội nghị hợp nhất các tổ chức cộng sản được tổ chức, quyết định thành lập Đảng Cộng sản Việt Nam. Hội nghị đã thông qua Chánh cương vắn tắt và Sách lược vắn tắt, hình thành Cương lĩnh chính trị đầu tiên của Đảng.
+                    Cương lĩnh xác định mục tiêu chiến lược là tiến tới xã hội cộng sản, trước mắt tập trung vào nhiệm vụ giải phóng dân tộc, đánh đổ đế quốc Pháp và phong kiến tay sai, giành độc lập cho đất nước. Đảng chủ trương đoàn kết toàn dân, trong đó công – nông là lực lượng nòng cốt, cùng các tầng lớp yêu nước khác đấu tranh giành tự do cho Tổ quốc.
+                    Sự kiện thành lập Đảng Cộng sản Việt Nam là bước ngoặt vĩ đại trong lịch sử dân tộc, chấm dứt khủng hoảng về đường lối cứu nước, mở ra thời kỳ mới cho cách mạng Việt Nam – thời kỳ độc lập, tự do và tiến lên chủ nghĩa xã hội. Ngày 3 tháng 2 hằng năm được chọn là ngày kỷ niệm thành lập Đảng Cộng sản Việt Nam.`
+    },
       {
         id: 'p1-m2',
-        title: 'Nguyễn Ái Quốc - Người sáng lập',
-        category: 'character',
-        type: 'image',
-        src: '/assets/p1-1.jpg',
-        caption: 'Chân dung Nguyễn Ái Quốc thời kỳ hoạt động quốc tế',
+        title: 'Bảng Tuyên Ngôn Độc Lập',
+        category: 'event',
+        type: 'video',
+        src: '/assets/phan1-2.png',
+        videoUrl: 'https://www.youtube.com/watch?v=SCPphVYDPDk',
+        caption: 'Bác Hồ đọc Bảng Tuyên Ngôn Độc Lập (2/9/1945)',
         details: {
           fullName: 'Nguyễn Sinh Cung (Nguyễn Ái Quốc)',
           role: 'Người sáng lập và lãnh tụ của Đảng',
-          contribution: 'Thành lập Đảng, xây dựng đường lối cách mạng Việt Nam',
+          contribution: 'Ngày 2-9-1945, tại Quảng trường Ba Đình, Hà Nội, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập, khai sinh ra nước Việt Nam Dân chủ Cộng hòa, mở ra kỷ nguyên mới cho lịch sử dân tộc.',
           quote: 'Đường cách mạng là con đường duy nhất để giải phóng dân tộc'
-        }
-      },
-      {
-        id: 'p1-m3',
-        title: 'Tư tưởng Hồ Chí Minh về độc lập dân tộc',
-        category: 'ideology',
-        type: 'image',
-        src: '/assets/p1-1.jpg',
-        caption: 'Những tư tưởng cốt lõi về giải phóng dân tộc và chủ nghĩa xã hội',
-        details: {
-          coreIdea: 'Kết hợp độc lập dân tộc với chủ nghĩa xã hội',
-          impact: 'Định hướng toàn bộ đường lối cách mạng Việt Nam',
-          quote: 'Không có gì quý hơn độc lập tự do'
-        }
-      }
+        },
+        audioText: `Ngày 2 tháng 9 năm 1945, tại Quảng trường Ba Đình lịch sử, Hà Nội, trước hàng chục vạn đồng bào, Chủ tịch Hồ Chí Minh đã trịnh trọng đọc Bản Tuyên ngôn Độc lập, tuyên bố với toàn thế giới về sự ra đời của nước Việt Nam Dân chủ Cộng hòa – mở ra kỷ nguyên độc lập, tự do cho dân tộc Việt Nam. 
+        Sau thắng lợi của Cách mạng Tháng Tám năm 1945, chính quyền về tay nhân dân trong cả nước. Ngày 27 tháng 8, Chính phủ lâm thời được thành lập do Chủ tịch Hồ Chí Minh đứng đầu. Tại căn gác nhỏ ở số 48 Hàng Ngang, Hà Nội, Người đã trực tiếp soạn thảo Bản Tuyên ngôn Độc lập, kết tinh trí tuệ và khát vọng tự do của cả dân tộc. 
+        Trước đó, Vua Bảo Đại tuyên bố thoái vị, chấm dứt hơn một nghìn năm chế độ quân chủ ở Việt Nam. Sáng ngày 2 tháng 9, trong không khí thiêng liêng tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh thay mặt Chính phủ lâm thời long trọng đọc Bản Tuyên ngôn Độc lập. Mở đầu bản tuyên ngôn là chân lý bất hủ: “Tất cả các dân tộc trên thế giới đều sinh ra bình đẳng; dân tộc nào cũng có quyền sống, quyền sung sướng và quyền tự do.”
+        Người khẳng định dứt khoát: “Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập.” Sự kiện này mang ý nghĩa lịch sử vô cùng to lớn. Nó chấm dứt ách thống trị gần một thế kỷ của thực dân, kết thúc chế độ phong kiến hàng nghìn năm, đồng thời khai sinh ra Nhà nước Việt Nam Dân chủ Cộng hòa – nhà nước của dân, do dân và vì dân đầu tiên ở Đông Nam Á. Từ đây, nhân dân Việt Nam từ thân phận nô lệ đã trở thành người làm chủ đất nước, nắm quyền quyết định vận mệnh của mình.
+        Tuyên ngôn Độc lập không chỉ đánh dấu bước ngoặt vĩ đại của dân tộc, mà còn vang vọng tinh thần tự do, cổ vũ mạnh mẽ phong trào giải phóng dân tộc trên toàn thế giới.`
+       },
     ]
   },
   {
@@ -66,47 +60,43 @@ const TIMELINE = [
         id: 'p2-m1',
         title: 'Cách mạng Tháng Tám 1945',
         category: 'event',
-        type: 'video',
-        src: '/assets/p2-1.jpg',
-        caption: 'Nhân dân Việt Nam đứng lên giành chính quyền',
-        videoUrl: 'https://www.youtube.com/embed/xyz123456',
+        type: 'image',
+        src: '/assets/phan2-1.png', 
+        caption: 'Đại hội đại biểu toàn quốc lần thứ II',
         details: {
           date: 'Tháng 8/1945',
-          significance: 'Giành được chính quyền, thành lập nước Việt Nam Dân chủ Cộng hòa',
+          significance: '2/1951 Chiêm Hóa, Tuyên Quang. Đổi tên Đảng thành Đảng Lao động Việt Nam. Thông qua Chính cương, Điều lệ mới. Khẳng định vai trò lãnh đạo cách mạng dân tộc dân chủ và tiến lên CNXH.',
           outcome: 'Kết thúc ách thống trị thực dân phong kiến'
         },
-        audioText: `Cách mạng Tháng Tám năm 1945 là cuộc cách mạng vĩ đại của nhân dân Việt Nam.
-        Dưới sự lãnh đạo của Đảng Cộng sản Việt Nam và Chủ tịch Hồ Chí Minh, nhân dân ta đã đứng lên
-        giành chính quyền từ tay thực dân Pháp và phong kiến. Ngày 19 tháng 8, Hà Nội được giải phóng.
-        Cách mạng thành công đã kết thúc hàng ngàn năm ách thống trị phong kiến và gần một thế kỷ ách nô lệ thực dân.`
-      },
+        audioText:`Năm 1951, khi cuộc kháng chiến chống thực dân Pháp bước vào giai đoạn ác liệt, Đại hội Đại biểu Toàn quốc lần thứ II của Đảng được triệu tập tại xã Vinh Quang, huyện Chiêm Hóa, tỉnh Tuyên Quang, từ ngày 11 đến 19 tháng 2. Đại hội được xem là “Đại hội kháng chiến kiến quốc”, đánh dấu bước ngoặt quan trọng trong quá trình lãnh đạo cách mạng Việt Nam.
+Tại Đại hội, Đảng đã đưa ra những quyết định chiến lược có ý nghĩa lịch sử. Trước hết, Đại hội quyết định tách Đảng Cộng sản Đông Dương thành các đảng riêng của ba nước Việt Nam, Lào và Campuchia để phù hợp với hoàn cảnh mỗi dân tộc. Ở Việt Nam, Đảng ra hoạt động công khai và chính thức lấy tên là Đảng Lao động Việt Nam – nhằm củng cố khối đại đoàn kết dân tộc và phát huy sức mạnh toàn dân trong cuộc kháng chiến.
+Đại hội đã thông qua Báo cáo chính trị do Chủ tịch Hồ Chí Minh trình bày, tổng kết 21 năm đấu tranh của Đảng và khẳng định nhiệm vụ trước mắt là tiêu diệt thực dân Pháp, đánh bại bọn can thiệp Mỹ, giành độc lập và thống nhất hoàn toàn cho đất nước. Đồng thời, Báo cáo về đường lối cách mạng Việt Nam do đồng chí Trường Chinh trình bày đã xác định con đường cách mạng dân tộc dân chủ nhân dân tiến lên chủ nghĩa xã hội.
+Đại hội cũng thông qua Chính cương và Điều lệ mới của Đảng, nêu rõ mục tiêu: “Đánh đuổi đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc; xóa bỏ tàn tích phong kiến, làm cho người cày có ruộng, phát triển chế độ dân chủ nhân dân, gây cơ sở cho chủ nghĩa xã hội.”
+Đại hội đã bầu Chủ tịch Hồ Chí Minh làm Chủ tịch Đảng và đồng chí Trường Chinh làm Tổng Bí thư.
+Đại hội II của Đảng có ý nghĩa lịch sử vô cùng to lớn – hoàn chỉnh đường lối cách mạng dân tộc dân chủ nhân dân, tăng cường vai trò lãnh đạo của Đảng, củng cố niềm tin của nhân dân và tạo tiền đề cho thắng lợi vĩ đại của chiến dịch Điện Biên Phủ năm 1954, kết thúc cuộc kháng chiến chống Pháp thắng lợi.`
+        },
       {
         id: 'p2-m2',
-        title: 'Chủ tịch Hồ Chí Minh',
-        category: 'character',
-        type: 'image',
-        src: '/assets/p2-1.jpg',
-        caption: 'Chủ tịch Hồ Chí Minh - Lãnh tụ kính yêu của dân tộc',
+        title: 'Chiến  Dịch Điện Biên Phủ',
+        category: 'event',
+        type: 'video',
+        src: '/assets/phan2-2.png',
+        caption: 'Quân đội Nhân dân Việt Nam chiến thắng Điện Biên Phủ ',
+        videoUrl: 'https://www.youtube.com/watch?v=mlfkuRdliUc&t=5s',
         details: {
           role: 'Chủ tịch nước Việt Nam Dân chủ Cộng hòa',
-          contribution: 'Lãnh đạo cách mạng Tháng Tám và kháng chiến chống Pháp',
+          contribution: 'Quân đội Nhân dân Việt Nam phất cờ chiến thắng trên nóc trung tâm phòng ngự của Tập đoàn cứ điểm Điện Biên Phủ',
           quote: 'Thà hy sinh tất cả, chứ không chịu mất nước, không chịu làm nô lệ'
-        }
+        },
+        audioText:`Chiến thắng Điện Biên Phủ ngày 7 tháng 5 năm 1954 là đỉnh cao của cuộc tiến công chiến lược Đông Xuân 1953–1954, được xem như một “thiên sử vàng” trong lịch sử dân tộc Việt Nam, đánh dấu bước ngoặt vĩ đại trong cuộc kháng chiến chống thực dân Pháp.
+Cuối năm 1953, quân Pháp xây dựng Điện Biên Phủ thành tập đoàn cứ điểm kiên cố nhất Đông Dương, nhằm thu hút và tiêu diệt lực lượng chủ lực của ta. Trước âm mưu đó, Trung ương Đảng Lao động Việt Nam, đứng đầu là Chủ tịch Hồ Chí Minh, đã hạ quyết tâm chiến lược: “Tiêu diệt tập đoàn cứ điểm Điện Biên Phủ để tạo bước ngoặt quyết định trong chiến tranh.”
+Dưới sự chỉ huy tài tình của Đại tướng Võ Nguyên Giáp, Bộ Chỉ huy chiến dịch đã linh hoạt thay đổi phương châm từ “đánh nhanh, thắng nhanh” sang “đánh chắc, tiến chắc”, theo đúng lời dặn của Chủ tịch Hồ Chí Minh: “Trận này rất quan trọng, phải đánh cho thắng. Chắc thắng mới đánh, không chắc thắng không đánh.”
+Sau 56 ngày đêm chiến đấu anh dũng, từ ngày 13 tháng 3 đến 7 tháng 5 năm 1954, quân và dân ta mở ba đợt tấn công lớn. Ta lần lượt tiêu diệt các cứ điểm Him Lam, Độc Lập, tiến tới bao vây, thắt chặt vòng vây và cuối cùng tổng công kích vào khu trung tâm. Chiều ngày 7 tháng 5, Toàn bộ tập đoàn cứ điểm Điện Biên Phủ bị tiêu diệt, Tướng Đờ Cátxtơri bị bắt sống, và lá cờ “Quyết chiến – Quyết thắng” tung bay trên hầm chỉ huy của địch.
+Chiến thắng Điện Biên Phủ có ý nghĩa lịch sử to lớn.
+Đối với Việt Nam, đây là chiến thắng quyết định, kết thúc thắng lợi cuộc kháng chiến chống thực dân Pháp, giải phóng hoàn toàn miền Bắc và mở đường cho sự nghiệp thống nhất đất nước.
+Trên phạm vi thế giới, Điện Biên Phủ là chiến công chấn động địa cầu, lần đầu tiên một dân tộc thuộc địa nhỏ bé đánh bại một đế quốc thực dân hùng mạnh, cổ vũ mạnh mẽ phong trào giải phóng dân tộc trên toàn thế giới và báo hiệu sự sụp đổ của chủ nghĩa thực dân cũ.`
       },
-      {
-        id: 'p2-m3',
-        title: 'Tuyên ngôn Độc lập 2/9/1945',
-        category: 'ideology',
-        type: 'image',
-        src: '/assets/p2-1.jpg',
-        caption: 'Bản tuyên ngôn lịch sử khai sinh nước Việt Nam Dân chủ Cộng hòa',
-        details: {
-          date: '2/9/1945',
-          location: 'Quảng trường Ba Đình, Hà Nội',
-          significance: 'Tuyên bố độc lập của dân tộc Việt Nam',
-          quote: 'Tất cả mọi người đều sinh ra có quyền bình đẳng'
-        }
-      }
+
     ]
   },
   {
@@ -118,49 +108,42 @@ const TIMELINE = [
     milestones: [
       {
         id: 'p3-m1',
-        title: 'Chiến thắng Điện Biên Phủ',
+        title: 'Đại hội III (9/1960)',
         category: 'event',
-        type: 'video',
-        src: '/assets/p3-1.jpg',
-        caption: 'Chiến thắng "lừng lẫy năm châu, chấn động địa cầu"',
-        videoUrl: 'https://www.youtube.com/embed/abc789xyz',
+        type: 'image',
+        src: '/assets/phan3-1.png',
+        caption: 'Xây dựng CNXH ở miền Bắc và đấu tranh thống nhất nước nhà',
         details: {
           date: '7/5/1954',
-          significance: 'Kết thúc ách thống trị thực dân Pháp tại Đông Dương',
+          significance: 'Xác định miền Bắc là hậu phương lớn, miền Nam là tiền tuyến lớn.',
           commander: 'Đại tướng Võ Nguyên Giáp',
-          outcome: 'Mở đường cho đàm phán Hiệp định Genève'
+          outcome: 'Ngày 05/9/1960, Đảng Lao động Việt Nam họp Đại hội đại biểu toàn quốc lần thứ 3'
         },
-        audioText: `Chiến thắng Điện Biên Phủ ngày 7 tháng 5 năm 1954 là một chiến thắng có ý nghĩa lịch sử to lớn.
-        Dưới sự chỉ huy tài tình của Đại tướng Võ Nguyên Giáp, quân và dân ta đã đánh bại hoàn toàn
-        tập đoàn cứ điểm Điện Biên Phủ của thực dân Pháp. Chiến thắng này đã "lừng lẫy năm châu, chấn động địa cầu",
-        kết thúc ách thống trị của thực dân Pháp tại Đông Dương và mở ra kỷ nguyên mới cho dân tộc Việt Nam.`
-      },
+        audioText: `Đại hội Đại biểu Toàn quốc lần thứ III của Đảng Lao động Việt Nam, diễn ra vào tháng 9 năm 1960 tại Thủ đô Hà Nội, là một dấu mốc quan trọng trong lịch sử cách mạng Việt Nam. Đây là Đại hội đầu tiên sau khi miền Bắc hoàn toàn giải phóng, mở ra thời kỳ cả nước cùng tiến hành hai nhiệm vụ chiến lược: xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh giải phóng miền Nam, thống nhất đất nước.
+Khẩu hiệu của Đại hội được Chủ tịch Hồ Chí Minh nêu rõ: “Đại hội lần này là Đại hội xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà.”
+Đại hội xác định miền Bắc là hậu phương lớn, có vai trò quyết định nhất đối với toàn bộ sự nghiệp cách mạng, với nhiệm vụ xây dựng tiềm lực, bảo vệ căn cứ địa và chi viện cho miền Nam. Đại hội cũng thông qua Kế hoạch Nhà nước 5 năm lần thứ nhất (1961–1965) nhằm xây dựng nền kinh tế xã hội chủ nghĩa.
+Trong khi đó, miền Nam được xác định là tiền tuyến lớn, giữ vai trò quyết định trực tiếp trong cuộc đấu tranh chống đế quốc Mỹ và tay sai để giải phóng miền Nam, thống nhất đất nước.
+Đại hội III hoàn chỉnh đường lối chiến lược của cách mạng Việt Nam, giương cao ngọn cờ độc lập dân tộc gắn liền với chủ nghĩa xã hội, đồng thời kết hợp sức mạnh dân tộc với sức mạnh thời đại.
+Về tổ chức lãnh đạo, Đại hội bầu Chủ tịch Hồ Chí Minh tiếp tục giữ cương vị Chủ tịch Đảng, và đồng chí Lê Duẩn làm Bí thư thứ nhất Ban Chấp hành Trung ương.
+Đại hội lần thứ III có ý nghĩa lịch sử đặc biệt to lớn: đã xác định rõ con đường cách mạng Việt Nam trong thời kỳ mới, tạo cơ sở lý luận và thực tiễn cho thắng lợi vĩ đại của nhân dân ta trong cuộc kháng chiến chống Mỹ, cứu nước, tiến tới thống nhất hoàn toàn đất nước.`},
       {
         id: 'p3-m2',
-        title: 'Đại tướng Võ Nguyên Giáp',
+        title: 'Thống nhất Đất nước (1975)',
         category: 'character',
         type: 'image',
-        src: '/assets/p3-1.jpg',
-        caption: 'Đại tướng Võ Nguyên Giáp - Người anh hùng Điện Biên Phủ',
+        src: '/assets/phan3-2.png',
+        caption: 'Quân Giải phóng tiến vào Dinh Độc Lập',
         details: {
           role: 'Tổng tư lệnh Quân đội nhân dân Việt Nam',
           contribution: 'Chỉ huy chiến thắng Điện Biên Phủ và nhiều chiến dịch lớn',
           quote: 'Không có gì không thể, chỉ có những điều chưa làm được'
-        }
+        },
+        audioText:`Ngày 30 tháng 4 năm 1975 là một mốc son chói lọi trong lịch sử dân tộc Việt Nam, đánh dấu chiến thắng vĩ đại của cuộc kháng chiến chống Mỹ, cứu nước, giải phóng hoàn toàn miền Nam, thống nhất đất nước.
+Sau Hiệp định Giơnevơ năm 1954, đất nước bị chia cắt làm hai miền. Dưới sự lãnh đạo của Đảng Lao động Việt Nam, nhân dân ta tiến hành đồng thời hai nhiệm vụ chiến lược: miền Bắc xây dựng chủ nghĩa xã hội, trở thành hậu phương lớn của cả nước; miền Nam kiên cường đấu tranh cách mạng, giữ vai trò quyết định trực tiếp trong sự nghiệp giải phóng dân tộc. Qua hơn hai mươi năm chiến đấu anh dũng, quân và dân ta đã lần lượt đánh bại mọi chiến lược chiến tranh của đế quốc Mỹ, từ “Chiến tranh đặc biệt”, “Chiến tranh cục bộ” đến “Việt Nam hóa chiến tranh”.
+Đến mùa xuân năm 1975, thời cơ lịch sử đã chín muồi. Bộ Chính trị quyết định mở cuộc Tổng tiến công và nổi dậy mùa Xuân 1975 với ba chiến dịch lớn: Tây Nguyên, Huế – Đà Nẵng, và cuối cùng là Chiến dịch Hồ Chí Minh lịch sử. Chiến dịch Hồ Chí Minh bắt đầu ngày 26 tháng 4 năm 1975, với quyết tâm “hành động táo bạo, bất ngờ, làm cho địch không kịp trở tay”. Chỉ sau 5 ngày, đến 11 giờ 30 phút ngày 30 tháng 4 năm 1975, lá cờ cách mạng tung bay trên nóc Dinh Độc Lập, đánh dấu sự sụp đổ hoàn toàn của chính quyền Sài Gòn.
+Chiến thắng 30 tháng 4 năm 1975 đã kết thúc 30 năm chiến tranh cách mạng, hoàn thành sự nghiệp giải phóng dân tộc và thống nhất Tổ quốc, đưa cả nước bước vào kỷ nguyên mới – kỷ nguyên hòa bình, độc lập, thống nhất và đi lên chủ nghĩa xã hội. Đây không chỉ là thắng lợi vĩ đại của dân tộc Việt Nam, mà còn là nguồn cổ vũ mạnh mẽ cho phong trào đấu tranh vì độc lập, tự do và hòa bình của các dân tộc bị áp bức trên toàn thế giới.`
       },
-      {
-        id: 'p3-m3',
-        title: 'Đường lối kháng chiến toàn dân',
-        category: 'ideology',
-        type: 'image',
-        src: '/assets/p3-1.jpg',
-        caption: 'Tư tưởng kháng chiến toàn dân, toàn diện',
-        details: {
-          coreIdea: 'Kháng chiến toàn dân, toàn diện, lâu dài',
-          impact: 'Động viên toàn dân tộc tham gia kháng chiến',
-          quote: 'Toàn dân đoàn kết, toàn dân kháng chiến'
-        }
-      }
+
     ]
   },
   {
@@ -212,7 +195,7 @@ const TIMELINE = [
         title: 'Đại hội VI (12/1986) – Đảng Cộng sản Việt Nam',
         category: 'event',
         type: 'image',
-        src: '/assets/daihoiVI_1.jpg',
+        src: '/assets/phan4-2.png',
         caption: 'Đại hội VI – Bước ngoặt mở đầu công cuộc Đổi mới đất nước (Hà Nội, 12/1986).',
         details: {
           date: '12/1986',
@@ -245,7 +228,7 @@ const TIMELINE = [
   title: 'Đại hội VII (6/1991) – Đảng Cộng sản Việt Nam',
   category: 'event',
   type: 'image',
-  src: '/assets/daihoiVII_1.jpg',
+  src: '/assets/phan4-3.png',
   caption: 'Đại hội VII – Thông qua Cương lĩnh 1991, định hướng xây dựng đất nước trong thời kỳ quá độ lên CNXH.',
   details: {
     date: '6/1991',

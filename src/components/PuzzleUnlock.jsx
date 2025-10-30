@@ -253,7 +253,7 @@ const PuzzleUnlock = () => {
         </div>
       </div>
 
-      Debug controls - chỉ hiện khi dev
+      {/* Debug controls - chỉ hiện khi dev
       {process.env.NODE_ENV === 'development' && (
         <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <h4 className="font-bold text-yellow-800 mb-2">🔧 Debug Controls</h4>
@@ -305,7 +305,7 @@ const PuzzleUnlock = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Notification khi có pieces được unlock */}
       {unlockedPhases.length > 0 && (
