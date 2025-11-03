@@ -201,7 +201,7 @@ export default function Gallery({ phase, phaseIndex }) {
 
         return (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={close}>
-            <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl mb-[660px] " onClick={(e) => e.stopPropagation()}>
               <div className="p-6 border-b border-slate-200">
                 <h3 className="font-bold text-slate-900 text-lg">🧠 Quiz: {milestone.title}</h3>
                 <div className="text-sm text-slate-600 mt-2">
