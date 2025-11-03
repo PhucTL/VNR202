@@ -88,12 +88,30 @@ const PuzzleUnlock = () => {
     const phase = TIMELINE.find(p => p.yearRange === period);
     if (!phase) return { completed: 0, total: 0, isUnlocked: false };
     
-    // Đếm số milestone đã unlock trong phase này
-    const completed = phase.milestones.filter(m => unlockedPieces.includes(m.id)).length;
+    // Đếm số milestone đã unlock trong phase này (từ context)
+    const completedFromContext = phase.milestones.filter(m => unlockedPieces.includes(m.id)).length;
     const total = phase.milestones.length;
-    const isUnlocked = completed === total && total > 0; // Cả phase unlock khi tất cả milestone completed
     
-    console.log(`Phase ${period}: ${completed}/${total} completed, unlocked: ${isUnlocked}`);
+    // Lấy số quiz đã hoàn thành từ localStorage
+    let completedFromStorage = 0;
+    try {
+      const phaseIndex = TIMELINE.findIndex(p => p.yearRange === period);
+      if (phaseIndex !== -1) {
+        const storageKey = `completedQuizzes-phase-${phaseIndex}`;
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+          completedFromStorage = JSON.parse(saved).length;
+        }
+      }
+    } catch (e) {
+      console.error('Error reading completed quizzes:', e);
+    }
+    
+    // Sử dụng giá trị lớn hơn giữa context và localStorage
+    const completed = Math.max(completedFromContext, completedFromStorage);
+    const isUnlocked = completed === total && total > 0;
+    
+    console.log(`Phase ${period}: ${completed}/${total} completed (context: ${completedFromContext}, storage: ${completedFromStorage}), unlocked: ${isUnlocked}`);
     
     return { completed, total, isUnlocked };
   };
@@ -228,7 +246,7 @@ const PuzzleUnlock = () => {
                     <div className="text-center text-white">
                       <div className="text-4xl mb-2">🔒</div>
                       <div className="text-sm font-bold">CHƯA MỞ KHÓA</div>
-                      <div className="text-xs opacity-75 mt-1">Hoàn thành 3/3 quiz</div>
+                      <div className="text-xs opacity-75 mt-1">Hoàn thành {completed}/{total} quiz</div>
                     </div>
                   </div>
                 )}
