@@ -355,11 +355,11 @@ Phát biểu bế mạc, Tổng Bí thư Nguyễn Phú Trọng nhấn mạnh:
       },
       {
         id: 'p5-m2',
-        title: 'Đại hội đảng XII',
+        title: 'Đại hội đảng XIII',
         category: 'event',
         type: 'image',
         src: '/assets/phan5-2.png',
-        caption: 'Đại hội đảng XII (Hà Nội, 1/2021).',
+        caption: 'Đại hội đảng XIII (Hà Nội, 1/2021).',
         details: {
           date: '26/01–1/02 (2021)',
           location: 'Hà Nội',
