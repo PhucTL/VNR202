@@ -85,12 +85,13 @@ const PuzzleUnlock = () => {
   ];
 
   const getPhaseCompletion = (period) => {
-    const phase = TIMELINE.find(t => t.yearRange === period);
+    const phase = TIMELINE.find(p => p.yearRange === period);
     if (!phase) return { completed: 0, total: 0, isUnlocked: false };
     
+    // Đếm số milestone đã unlock trong phase này
     const completed = phase.milestones.filter(m => unlockedPieces.includes(m.id)).length;
     const total = phase.milestones.length;
-    const isUnlocked = completed === total && total > 0;
+    const isUnlocked = completed === total && total > 0; // Cả phase unlock khi tất cả milestone completed
     
     console.log(`Phase ${period}: ${completed}/${total} completed, unlocked: ${isUnlocked}`);
     

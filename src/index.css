@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==== Background với ảnh Bác Hồ ==== */
+body {
+  background: 
+    linear-gradient(rgba(254, 243, 199, 0.7), rgba(220, 38, 38, 0.1)),
+    url('/assets/PSD-Ho-Chi-Minh-VietNam2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
 /* ==== Performance Optimized Animations - Tinh tế & Thanh lịch ==== */
 @keyframes fadeInUp {
   from {
@@ -220,7 +232,7 @@
   color-scheme: light;
 }
 
-/* ==== NỀN 3D: Hình ảnh Bác Hồ với hiệu ứng parallax đẹp ==== */
+/* ==== NỀN ĐƠN GIẢN: Hình ảnh Bác Hồ tĩnh ==== */
 body {
   min-height: 100vh;
   margin: 0;
@@ -229,26 +241,24 @@ body {
   color: #1a1a1a;
 }
 
-/* Layer 1: Background chính với hình Bác Hồ - Optimized */
+/* Layer 1: Background chính với hình Bác Hồ - Static */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   background: url('/assets/bachohominh.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -4;
-  /* Performance optimizations */
-  transform: translateZ(0) scale(1.05);
-  will-change: transform;
-  animation: parallaxBackground 30s ease-in-out infinite alternate;
+  /* No animations for better performance */
+  transform: translateZ(0);
 }
 
-/* Layer 2: Gradient overlay tạo chiều sâu - Simplified */
+/* Layer 2: Gradient overlay đơn giản */
 body::after {
   content: "";
   position: fixed;
@@ -263,8 +273,7 @@ body::after {
     rgba(220, 38, 38, 0.15) 100%
   );
   z-index: -3;
-  will-change: opacity;
-  animation: gradientShift 20s ease-in-out infinite alternate;
+  /* Static overlay */
 }
 
 /* Animation cho background parallax - Optimized */
@@ -286,74 +295,26 @@ body::after {
   100% { opacity: 0.9; }
 }
 
-/* Layer 3: Hiệu ứng ánh sáng 3D - Slower & Lighter */
-.background-3d-light {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 215, 0, 0.05) 0%,
-    rgba(220, 38, 38, 0.03) 30%,
-    transparent 70%
+/* ==== Đường phân cách đơn giản ==== */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(220, 38, 38, 0.5) 20%,
+    rgba(220, 38, 38, 0.8) 50%,
+    rgba(220, 38, 38, 0.5) 80%,
+    transparent
   );
-  z-index: -2;
-  will-change: transform;
-  animation: lightRotate 60s linear infinite;
-  pointer-events: none;
+  margin: 2.5rem 0;
+  opacity: 0.8;
 }
 
-@keyframes lightRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Layer 4: Particles floating effect - Optimized */
+/* Disable tất cả hiệu ứng phức tạp */
+.background-3d-light,
 .floating-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: rgba(255, 215, 0, 0.4);
-  border-radius: 50%;
-  will-change: transform, opacity;
-  animation: floatParticle 12s ease-in-out infinite;
-}
-
-.particle:nth-child(1) { left: 20%; animation-delay: 0s; }
-.particle:nth-child(2) { left: 40%; animation-delay: 2s; }
-.particle:nth-child(3) { left: 60%; animation-delay: 4s; }
-.particle:nth-child(4) { left: 80%; animation-delay: 6s; }
-
-@keyframes floatParticle {
-  0% { 
-    transform: translate3d(0, 100vh, 0) scale(0); 
-    opacity: 0; 
-  }
-  10% { 
-    opacity: 1; 
-    transform: translate3d(0, 90vh, 0) scale(1); 
-  }
-  90% { 
-    opacity: 1; 
-    transform: translate3d(0, -10vh, 0) scale(1); 
-  }
-  100% { 
-    transform: translate3d(0, -20vh, 0) scale(0); 
-    opacity: 0; 
-  }
+  display: none;
 }
 
 /* ==== Root container ==== */
@@ -365,112 +326,57 @@ body::after {
   min-height: 100vh;
 }
 
-/* ==== Container với hiệu ứng 3D glass morphism - Optimized ==== */
+/* ==== Container trong suốt để thấy ảnh Bác Hồ ==== */
 .museum-root {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   min-height: 100vh;
   color: #1a1a1a;
   position: relative;
-  overflow: hidden;
   margin: 20px;
-  /* Simplified 3D transform */
+  /* Simple transform */
   transform: translateZ(0);
-  will-change: transform, backdrop-filter;
-  animation: museum3D 15s ease-in-out infinite alternate;
 }
 
-@keyframes museum3D {
-  0% { 
-    backdrop-filter: blur(15px);
-    opacity: 0.98;
-  }
-  100% { 
-    backdrop-filter: blur(18px);
-    opacity: 1;
-  }
-}
-
-/* Hover effects với 3D cho museum container */
+/* Hover effects đơn giản cho museum container */
 .museum-root:hover {
-  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.001);
-  backdrop-filter: blur(25px);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 0 60px rgba(220, 38, 38, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
-/* Inner glow effect cho museum */
-.museum-root::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg, 
-    rgba(220, 38, 38, 0.05) 0%,
-    transparent 25%,
-    transparent 75%,
-    rgba(255, 215, 0, 0.05) 100%
-  );
-  border-radius: 20px;
-  pointer-events: none;
-  animation: innerGlow 8s ease-in-out infinite alternate;
-}
-
-@keyframes innerGlow {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.7; }
-}
-
-/* Content với hiệu ứng depth */
+/* Content đơn giản */
 .museum-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 3.5rem 4rem;
   position: relative;
   z-index: 10;
-  animation: fadeInUp 1s ease-out;
-  /* Hiệu ứng 3D cho content */
-  transform: translateZ(10px);
+  animation: fadeInUp 0.6s ease-out;
 }
 
-/* Cards với 3D layers */
+/* Cards trong suốt */
 .museum-content .card-elegant {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
-  transform: translateZ(5px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: cardFloat 6s ease-in-out infinite alternate;
-}
-
-@keyframes cardFloat {
-  0% { transform: translateZ(5px) translateY(0px); }
-  100% { transform: translateZ(8px) translateY(-2px); }
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
 .museum-content .card-elegant:hover {
-  transform: translateZ(15px) translateY(-5px) rotateX(2deg);
-  backdrop-filter: blur(15px);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 0 40px rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.2);
+  transform: translateY(-2px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: rgba(220, 38, 38, 0.3);
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* ==== Tiêu đề với hiệu ứng 3D text - Optimized ==== */
+/* ==== Tiêu đề đơn giản và dễ đọc ==== */
 .museum-root h1 {
   font-size: 3.2rem;
   color: #dc2626;
@@ -479,112 +385,49 @@ body::after {
   letter-spacing: 2px;
   margin-bottom: 1rem;
   position: relative;
-  /* Simplified 3D text */
-  text-shadow: 
-    2px 2px 0px rgba(184, 28, 28, 0.8),
-    4px 4px 0px rgba(184, 28, 28, 0.4),
-    6px 6px 15px rgba(0, 0, 0, 0.2);
-  transform: perspective(500px) rotateX(5deg);
-  will-change: transform;
-  animation: text3D 8s ease-in-out infinite alternate;
+  /* Simple text shadow */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes text3D {
-  0% { 
-    transform: perspective(500px) rotateX(5deg);
-    text-shadow: 
-      2px 2px 0px rgba(184, 28, 28, 0.8),
-      4px 4px 0px rgba(184, 28, 28, 0.4),
-      6px 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  100% { 
-    transform: perspective(500px) rotateX(3deg);
-    text-shadow: 
-      3px 3px 0px rgba(184, 28, 28, 0.8),
-      5px 5px 0px rgba(184, 28, 28, 0.4),
-      8px 8px 18px rgba(0, 0, 0, 0.25);
-  }
-}
-
-/* Hiệu ứng 3D gradient cho tiêu đề */
+/* Gradient text cho tiêu đề */
 .museum-root h1.text-elegant {
-  background: linear-gradient(45deg, #dc2626, #f97316, #eab308);
-  background-size: 200% 200%;
+  background: linear-gradient(45deg, #dc2626, #f97316);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gentleGradient 4s ease-in-out infinite, text3D 6s ease-in-out infinite alternate;
-  transform: perspective(500px) rotateX(15deg);
 }
 
-/* Phụ đề với depth */
+/* Phụ đề đơn giản */
 .museum-root h2 {
   color: #7c2d12;
   font-weight: 700;
   margin-top: 1.5rem;
-  text-shadow: 
-    1px 1px 0px rgba(124, 45, 18, 0.8),
-    2px 2px 0px rgba(124, 45, 18, 0.6),
-    3px 3px 10px rgba(0, 0, 0, 0.2);
-  transform: perspective(300px) rotateX(5deg);
-  animation: subtitle3D 8s ease-in-out infinite alternate;
-}
-
-@keyframes subtitle3D {
-  0% { 
-    transform: perspective(300px) rotateX(5deg) translateZ(0px);
-    opacity: 0.9;
-  }
-  100% { 
-    transform: perspective(300px) rotateX(3deg) translateZ(2px);
-    opacity: 1;
-  }
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .museum-root h2:hover {
   color: #dc2626;
-  transform: perspective(300px) rotateX(0deg) translateZ(5px);
-  text-shadow: 
-    2px 2px 0px rgba(220, 38, 38, 0.8),
-    4px 4px 0px rgba(220, 38, 38, 0.6),
-    6px 6px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.3s ease;
 }
 
-/* Văn bản với subtle 3D */
+/* Văn bản rõ ràng */
 .museum-root p {
   color: #374151;
   margin-top: 0.8rem;
   line-height: 1.8;
-  text-shadow: 
-    1px 1px 0px rgba(55, 65, 81, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.1);
-  opacity: 0.9;
-  transform: perspective(200px) rotateX(2deg);
-  animation: textDepth 10s ease-in-out infinite alternate;
-}
-
-@keyframes textDepth {
-  0% { 
-    transform: perspective(200px) rotateX(2deg) translateZ(0px);
-  }
-  100% { 
-    transform: perspective(200px) rotateX(1deg) translateZ(1px);
-  }
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  opacity: 0.95;
 }
 
 .museum-root p:hover {
   opacity: 1;
-  transform: perspective(200px) rotateX(0deg) translateZ(3px);
-  text-shadow: 
-    1px 1px 0px rgba(55, 65, 81, 0.2),
-    0 3px 6px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-/* ==== Buttons với hiệu ứng 3D - Optimized ==== */
+/* ==== Buttons đơn giản và dễ sử dụng ==== */
 button {
-  border-radius: 16px;
+  border-radius: 12px;
   border: 2px solid transparent;
   padding: 0.8em 1.6em;
   font-size: 1rem;
@@ -592,162 +435,74 @@ button {
   font-family: inherit;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translate3d(0, 0, 0);
-  will-change: transform, box-shadow;
-  /* Simplified 3D Button effects */
-  box-shadow: 
-    0 4px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Hiệu ứng hover 3D - Simplified */
+/* Hover effects đơn giản */
 button:hover:not(:disabled) {
-  transform: translate3d(0, -2px, 0);
-  box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 button:active {
-  transform: translate3d(0, 0, 0);
+  transform: translateY(0);
   transition: transform 0.1s ease;
 }
 
-/* Nút Đỏ với 3D depth */
+/* Nút Đỏ đơn giản */
 .btn-red {
-  background: linear-gradient(135deg, #dc2626, #b91c1c, #991b1b);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   color: #fff;
   border-color: #7f1d1d;
-  box-shadow: 
-    0 6px 12px rgba(220, 38, 38, 0.3),
-    0 3px 6px rgba(220, 38, 38, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .btn-red:hover {
-  background: linear-gradient(135deg, #b91c1c, #991b1b, #7f1d1d);
-  box-shadow: 
-    0 10px 20px rgba(220, 38, 38, 0.4),
-    0 6px 12px rgba(220, 38, 38, 0.3),
-    0 0 30px rgba(255, 215, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  animation: button3DGlow 2s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
 }
 
-@keyframes button3DGlow {
-  0% { 
-    box-shadow: 
-      0 10px 20px rgba(220, 38, 38, 0.4),
-      0 6px 12px rgba(220, 38, 38, 0.3),
-      0 0 30px rgba(255, 215, 0, 0.2);
-  }
-  100% { 
-    box-shadow: 
-      0 12px 24px rgba(220, 38, 38, 0.5),
-      0 8px 16px rgba(220, 38, 38, 0.4),
-      0 0 40px rgba(255, 215, 0, 0.3);
-  }
-}
-
-/* Nút Xanh với 3D wave */
+/* Nút Xanh đơn giản */
 .btn-blue {
-  background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: #fff;
   border-color: #1e40af;
-  box-shadow: 
-    0 6px 12px rgba(59, 130, 246, 0.3),
-    0 3px 6px rgba(59, 130, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .btn-blue:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8, #1e40af);
-  box-shadow: 
-    0 10px 20px rgba(59, 130, 246, 0.4),
-    0 6px 12px rgba(59, 130, 246, 0.3),
-    0 0 30px rgba(255, 255, 255, 0.1);
-  animation: button3DWave 3s ease-in-out infinite;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
-@keyframes button3DWave {
-  0%, 100% { 
-    transform: perspective(500px) translateZ(10px) translateY(-2px) rotateX(5deg);
-  }
-  50% { 
-    transform: perspective(500px) translateZ(12px) translateY(-3px) rotateX(7deg);
-  }
-}
-
-/* Nút với gradient 3D chảy */
+/* Nút với gradient đơn giản */
 .btn-elegant {
-  background: linear-gradient(-45deg, #dc2626, #f97316, #eab308);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #dc2626, #f97316);
   color: white;
   border: none;
-  box-shadow: 
-    0 6px 12px rgba(220, 38, 38, 0.2),
-    0 3px 6px rgba(247, 147, 22, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  animation: gentleGradient 4s ease infinite;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
 }
 
 .btn-elegant:hover {
-  animation: gentleGradient 2s ease infinite, button3DElegant 1s ease-in-out;
-  transform: perspective(500px) translateZ(15px) translateY(-3px) rotateX(8deg);
-  box-shadow: 
-    0 12px 24px rgba(220, 38, 38, 0.3),
-    0 8px 16px rgba(247, 147, 22, 0.2),
-    0 0 40px rgba(234, 179, 8, 0.2);
+  background: linear-gradient(135deg, #b91c1c, #ea580c);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
 }
 
-@keyframes button3DElegant {
-  0% { 
-    transform: perspective(500px) translateZ(10px) translateY(-2px) rotateX(5deg);
-  }
-  50% { 
-    transform: perspective(500px) translateZ(20px) translateY(-4px) rotateX(10deg);
-  }
-  100% { 
-    transform: perspective(500px) translateZ(15px) translateY(-3px) rotateX(8deg);
-  }
-}
-
-/* Nút với border 3D glow */
+/* Nút outline trong suốt */
 .btn-simple {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
   color: #dc2626;
   border: 2px solid #dc2626;
-  box-shadow: 
-    0 4px 8px rgba(220, 38, 38, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  animation: border3DGlow 3s ease-in-out infinite;
-}
-
-@keyframes border3DGlow {
-  0%, 100% { 
-    border-color: rgba(220, 38, 38, 0.6);
-    box-shadow: 
-      0 4px 8px rgba(220, 38, 38, 0.1),
-      0 0 20px rgba(220, 38, 38, 0.1);
-  }
-  50% { 
-    border-color: rgba(220, 38, 38, 1);
-    box-shadow: 
-      0 6px 12px rgba(220, 38, 38, 0.2),
-      0 0 30px rgba(220, 38, 38, 0.2);
-  }
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
 }
 
 .btn-simple:hover {
-  background: rgba(220, 38, 38, 0.1);
-  backdrop-filter: blur(15px);
-  transform: perspective(500px) translateZ(8px) translateY(-2px);
-  animation: border3DGlow 1s ease-in-out infinite;
+  background: rgba(220, 38, 38, 0.2);
+  backdrop-filter: blur(8px);
+  color: white;
 }
 
 /* ==== Footer ==== */
@@ -769,48 +524,43 @@ button:active {
   filter: drop-shadow(0 0 1.5em rgba(220, 38, 38, 0.5));
 }
 
-/* ==== Đường phân cách ánh sáng đỏ - Hiệu ứng động ==== */
+/* ==== Đường phân cách đơn giản ==== */
 hr {
   border: none;
   height: 2px;
   background: linear-gradient(
     90deg, 
     transparent, 
-    rgba(255, 215, 0, 0.7) 20%,
+    rgba(220, 38, 38, 0.5) 20%,
     rgba(220, 38, 38, 0.8) 50%,
-    rgba(184, 28, 28, 0.9) 60%,
-    rgba(255, 215, 0, 0.7) 80%,
+    rgba(220, 38, 38, 0.5) 80%,
     transparent
   );
   margin: 2.5rem 0;
-  opacity: 0.9;
-  animation: lineGlow 3s ease-in-out infinite alternate;
-  position: relative;
+  opacity: 0.8;
 }
 
-hr::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg, 
-    transparent, 
-    rgba(255, 215, 0, 0.3) 30%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 215, 0, 0.3) 70%,
-    transparent
-  );
-  filter: blur(2px);
-  animation: shimmer 2s linear infinite;
+/* Disable tất cả hiệu ứng phức tạp */
+.background-3d-light,
+.floating-particles {
+  display: none;
 }
 
-@keyframes lineGlow {
-  0% { opacity: 0.7; transform: scaleX(0.95); }
-  100% { opacity: 1; transform: scaleX(1); }
-}
+/* Disable tất cả mobile animations */
+@media (max-width: 768px) {
+  * {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .museum-root {
+    margin: 10px;
+  }
+  
+  .museum-content {
+    padding: 2rem;
+  }
+
 
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
@@ -831,11 +581,28 @@ hr::after {
   }
 }
 
+/* ==== Tối ưu hiệu năng ==== */
+* {
+  will-change: auto;
+}
+
+/* Giảm blur trên mobile để tăng hiệu năng */
 @media (max-width: 768px) {
+  .museum-root,
+  .card-elegant,
+  .btn-simple {
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+  }
+  
+  body {
+    background-attachment: scroll; /* Tránh lag trên mobile */
+  }
+  
   .museum-content {
     padding: 1.5rem;
   }
   .museum-root h1 {
     font-size: 2.2rem;
   }
-}
+}}
