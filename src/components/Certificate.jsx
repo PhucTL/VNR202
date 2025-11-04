@@ -1,4 +1,5 @@
 import React, { useRef, memo } from 'react';
+import toast from 'react-hot-toast';
 import { useProgress } from '../context/ProgressContext';
 
 function formatDuration(startTime, endTime) {
@@ -78,15 +79,21 @@ const Certificate = memo(function Certificate({ onClose }) {
           link.click();
           
           // Hiển thị thông báo thành công
-          alert('✅ Chứng chỉ đã được tải xuống thành công!');
+          toast.success('✅ Chứng chỉ đã được tải xuống thành công!', {
+            duration: 3000,
+          });
         }).catch(error => {
           console.error('Error generating certificate:', error);
-          alert('❌ Không thể tạo chứng chỉ. Vui lòng thử lại hoặc sử dụng chức năng In.');
+          toast.error('❌ Không thể tạo chứng chỉ. Vui lòng thử lại hoặc sử dụng chức năng In.', {
+            duration: 4000,
+          });
         });
       }
     }).catch(() => {
       // Fallback: in trang
-      alert('Không thể tải xuống. Vui lòng sử dụng chức năng In chứng chỉ.');
+      toast.error('Không thể tải xuống. Vui lòng sử dụng chức năng In chứng chỉ.', {
+        duration: 3000,
+      });
       window.print();
     });
   };

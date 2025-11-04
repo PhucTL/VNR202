@@ -237,9 +237,7 @@ Chiến thắng 30 tháng 4 năm 1975 đã kết thúc 30 năm chiến tranh cá
           quote: '“Cả nước ta tiến nhanh, tiến mạnh, tiến vững chắc lên chủ nghĩa xã hội.”'
         },
         gallery: [
-          { src: '/assets/daihoiIV_1.jpg', caption: 'Đại hội IV – Dấu mốc quan trọng sau thống nhất đất nước (Hà Nội, 12/1976).' },
-          { src: '/assets/daihoiIV_2.jpg', caption: 'Quang cảnh Đại hội đại biểu toàn quốc lần thứ IV với sự tham gia của các đại biểu từ cả nước.' },
-          { src: '/assets/leduan.jpeg', caption: 'Tổng Bí thư Lê Duẩn phát biểu khai mạc Đại hội, đề ra đường lối phát triển đất nước.' }
+          { src: '/assets/daihoiIV_2.jpg', caption: 'Quang cảnh Đại hội đại biểu toàn quốc lần thứ IV với sự tham gia của các đại biểu từ cả nước.' }
         ],
         audioText: `Đại hội IV của Đảng Cộng sản Việt Nam diễn ra tại Hà Nội vào tháng 12 năm 1976. 
       Đây là Đại hội đầu tiên của cả nước sau ngày thống nhất. 
@@ -274,11 +272,6 @@ Chiến thắng 30 tháng 4 năm 1975 đã kết thúc 30 năm chiến tranh cá
           impact: 'Tạo nền tảng cho công cuộc phát triển, hội nhập và nâng cao đời sống nhân dân trong thời kỳ mới.',
           quote: '“Đổi mới không phải là thay đổi mục tiêu xã hội chủ nghĩa, mà là làm cho chủ nghĩa xã hội được thực hiện tốt hơn.” – Tổng Bí thư Trường Chinh'
         },
-        gallery: [
-          { src: '/assets/daihoiVI_1.jpg', caption: 'Quang cảnh Đại hội đại biểu toàn quốc lần thứ VI, tháng 12 năm 1986.' },
-          { src: '/assets/daihoiVI_2.jpg', caption: 'Tổng Bí thư Trường Chinh phát biểu khai mạc Đại hội VI.' },
-          { src: '/assets/daihoiVI_3.jpg', caption: 'Đại hội VI thông qua đường lối đổi mới toàn diện đất nước.' }
-        ],
         audioText: `Đại hội VI của Đảng Cộng sản Việt Nam diễn ra tại Hà Nội vào tháng 12 năm 1986. 
   Đây là Đại hội mở đầu công cuộc Đổi mới toàn diện đất nước, đánh dấu bước ngoặt lớn trong lịch sử phát triển của Việt Nam. 
   Trước bối cảnh khủng hoảng kinh tế - xã hội, Đại hội đã đề ra đường lối đổi mới kinh tế, 
@@ -306,14 +299,9 @@ Chiến thắng 30 tháng 4 năm 1975 đã kết thúc 30 năm chiến tranh cá
     ],
     coreIdea: 'Độc lập dân tộc gắn liền với chủ nghĩa xã hội là con đường duy nhất đúng đắn của cách mạng Việt Nam.',
     impact: 'Tạo cơ sở lý luận và thực tiễn cho công cuộc phát triển đất nước trong thời kỳ hội nhập, khẳng định vai trò lãnh đạo duy nhất của Đảng.',
-    quote: '“Đảng Cộng sản Việt Nam là lực lượng lãnh đạo Nhà nước và xã hội.”'
+    quote: '"Đảng Cộng sản Việt Nam là lực lượng lãnh đạo Nhà nước và xã hội."'
   },
-  gallery: [
-    { src: '/assets/daihoiVII_1.jpg', caption: 'Toàn cảnh Đại hội đại biểu toàn quốc lần thứ VII, tháng 6 năm 1991.' },
-    { src: '/assets/daihoiVII_2.jpg', caption: 'Tổng Bí thư Đỗ Mười trình bày báo cáo chính trị tại Đại hội.' },
-    { src: '/assets/daihoiVII_3.jpg', caption: 'Các đại biểu biểu quyết thông qua Cương lĩnh 1991 – định hướng phát triển đất nước.' }
-  ],
-  audioText: `Đại hội VII của Đảng Cộng sản Việt Nam diễn ra tại Hà Nội vào tháng 6 năm 1991. 
+  audioText: `Đại hội VII của Đảng Cộng sản Việt Nam diễn ra tại Hà Nội vào tháng 6 năm 1991.
   Trong bối cảnh đất nước bước vào thời kỳ Đổi mới và tình hình thế giới nhiều biến động, 
   Đại hội đã thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội. 
   Cương lĩnh 1991 khẳng định con đường độc lập dân tộc gắn liền với chủ nghĩa xã hội là lựa chọn đúng đắn của dân tộc Việt Nam. 

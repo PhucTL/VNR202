@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import ModalMedia from './ModalMedia';
 import Quiz from './Quiz';
 import { useProgress } from '../context/ProgressContext';
@@ -77,7 +78,9 @@ export default function Gallery({ phase, phaseIndex }) {
     const newCompleted = new Set(allMilestoneIds);
     saveCompletedQuizzes(newCompleted);
     unlockPiece(`phase-${phaseIndex + 1}`);
-    alert('Đã hoàn thành tất cả MOOC của giai đoạn này (DEBUG)!');
+    toast.success('🐞 Đã hoàn thành tất cả MOOC của giai đoạn này (DEBUG)!', {
+      duration: 2000,
+    });
   };
 
   const openMilestone = (milestone) => setActive(milestone);
@@ -96,7 +99,9 @@ export default function Gallery({ phase, phaseIndex }) {
     if (allCompleted && milestones.length > 0) {
       // Mở mảnh ghép cho cả giai đoạn
       unlockPiece(`phase-${phaseIndex + 1}`);
-      alert(`🎉 Chúc mừng! Bạn đã hoàn thành tất cả ${milestones.length} MOOC của giai đoạn "${phase.title}"! Mảnh ghép đã được mở khóa! 🧩`);
+      toast.success(`🎉 Chúc mừng! Bạn đã hoàn thành tất cả ${milestones.length} MOOC của giai đoạn "${phase.title}"! Mảnh ghép đã được mở khóa! 🧩`, {
+        duration: 4000,
+      });
     }
   };
 
@@ -105,7 +110,7 @@ export default function Gallery({ phase, phaseIndex }) {
   return (
     <div className="mt-8">
       {/* DEBUG BUTTONS */}
-      <div className="mb-4 flex gap-2">
+      {/* <div className="mb-4 flex gap-2">
         <button
           className="px-4 py-2 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600"
           onClick={debugCompleteAllMoocs}
@@ -122,7 +127,10 @@ export default function Gallery({ phase, phaseIndex }) {
             console.log('Storage Key:', STORAGE_KEY);
             console.log('Completed Quizzes:', Array.from(completedQuizzes));
             console.log('Milestones:', milestones.map(m => m.id));
-            alert(`Phase Index: ${phaseIndex}\nPhase ID: ${phase.id}\nCompleted: ${Array.from(completedQuizzes).join(', ')}`);
+            toast(`ℹ️ Phase: ${phaseIndex} | ID: ${phase.id}\nHoàn thành: ${Array.from(completedQuizzes).join(', ') || 'Chưa có'}`, {
+              duration: 3000,
+              icon: 'ℹ️',
+            });
           }}
         >
           ℹ️ Debug Info
@@ -133,13 +141,15 @@ export default function Gallery({ phase, phaseIndex }) {
             if (confirm('Xóa tất cả tiến độ của giai đoạn này?')) {
               localStorage.removeItem(STORAGE_KEY);
               saveCompletedQuizzes(new Set());
-              alert('Đã xóa tiến độ!');
+              toast.success('🗑️ Đã xóa tiến độ!', {
+                duration: 2000,
+              });
             }
           }}
         >
           🗑️ Xóa tiến độ
         </button>
-      </div>
+      </div> */}
       <div className="mb-8 p-6 bg-white/90 rounded-2xl border border-red-200 shadow-lg">
         <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center gap-3">
           🏛️ {phase.title}
@@ -362,7 +372,9 @@ export default function Gallery({ phase, phaseIndex }) {
                       disabled={!allAnswered}
                       onClick={() => {
                         if (!allAnswered) {
-                          alert('⚠️ Bạn cần trả lời đúng TẤT CẢ câu hỏi để hoàn thành MOOC!');
+                          toast.error('⚠️ Bạn cần trả lời đúng TẤT CẢ câu hỏi để hoàn thành MOOC!', {
+                            duration: 3000,
+                          });
                           return;
                         }
                         
@@ -374,7 +386,9 @@ export default function Gallery({ phase, phaseIndex }) {
                         // Unlock milestone ngay khi hoàn thành quiz
                         unlockPiece(milestone.id);
                         close();
-                        alert(`🎉 Hoàn thành MOOC "${milestone.title}"!`);
+                        toast.success(`🎉 Hoàn thành MOOC "${milestone.title}"!`, {
+                          duration: 3000,
+                        });
                         
                         // Kiểm tra xem đã hoàn thành tất cả MOOC chưa
                         setTimeout(() => {
@@ -394,7 +408,9 @@ export default function Gallery({ phase, phaseIndex }) {
                             const phaseId = phase.id;
                             console.log('Unlocking piece with ID:', phaseId);
                             unlockPiece(phaseId);
-                            alert(`🏆 XUẤT SẮC! Bạn đã hoàn thành tất cả ${milestones.length} MOOC của giai đoạn "${phase.title}"!\n🧩 Mảnh ghép "${phaseId}" đã được mở khóa!`);
+                            toast.success(`🏆 XUẤT SẮC! Bạn đã hoàn thành tất cả ${milestones.length} MOOC của giai đoạn "${phase.title}"!\n🧩 Mảnh ghép "${phaseId}" đã được mở khóa!`, {
+                              duration: 5000,
+                            });
                           }
                         }, 500);
                       }}
