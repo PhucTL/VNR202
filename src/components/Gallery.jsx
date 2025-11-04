@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ModalMedia from './ModalMedia';
 import Quiz from './Quiz';
 import { useProgress } from '../context/ProgressContext';
@@ -26,9 +26,59 @@ export default function Gallery({ phase, phaseIndex }) {
   const [active, setActive] = useState(null);
   const [showQuizFor, setShowQuizFor] = useState(null);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
-  const [completedQuizzes, setCompletedQuizzes] = useState(new Set());
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   const { unlockPiece } = useProgress();
+
+  // Lưu trạng thái hoàn thành vào localStorage theo phase
+  const STORAGE_KEY = `completedQuizzes-phase-${phaseIndex}`;
+  const getInitialCompleted = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        return new Set(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.error('Error loading completed quizzes:', e);
+    }
+    return new Set();
+  };
+  
+  const [completedQuizzes, setCompletedQuizzes] = useState(getInitialCompleted);
+
+  // Cập nhật lại completedQuizzes khi phaseIndex thay đổi
+  useEffect(() => {
+    const newCompleted = getInitialCompleted();
+    setCompletedQuizzes(newCompleted);
+    
+    // Sync với context để PuzzleUnlock nhận biết
+    newCompleted.forEach(milestoneId => {
+      unlockPiece(milestoneId);
+    });
+  }, [phaseIndex]);
+
+  // Hàm lưu completedQuizzes vào localStorage
+  const saveCompletedQuizzes = (newCompleted) => {
+    setCompletedQuizzes(newCompleted);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(newCompleted)));
+      
+      // Đồng thời unlock từng milestone để PuzzleUnlock nhận biết
+      newCompleted.forEach(milestoneId => {
+        unlockPiece(milestoneId);
+      });
+    } catch (e) {
+      console.error('Error saving completed quizzes:', e);
+    }
+  };
+
+  // DEBUG: Hoàn thành tất cả MOOC ngay lập tức
+  const debugCompleteAllMoocs = () => {
+    const allMilestoneIds = milestones.map(m => m.id);
+    const newCompleted = new Set(allMilestoneIds);
+    saveCompletedQuizzes(newCompleted);
+    unlockPiece(`phase-${phaseIndex + 1}`);
+    alert('Đã hoàn thành tất cả MOOC của giai đoạn này (DEBUG)!');
+  };
 
   const openMilestone = (milestone) => setActive(milestone);
   const close = () => { 
@@ -54,22 +104,64 @@ export default function Gallery({ phase, phaseIndex }) {
 
   return (
     <div className="mt-8">
+      {/* DEBUG BUTTONS */}
+      <div className="mb-4 flex gap-2">
+        <button
+          className="px-4 py-2 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600"
+          onClick={debugCompleteAllMoocs}
+        >
+          🐞 DEBUG: Hoàn thành tất cả MOOC
+        </button>
+        <button
+          className="px-4 py-2 bg-purple-500 text-white rounded-xl font-bold hover:bg-purple-600"
+          onClick={() => {
+            console.log('=== DEBUG INFO ===');
+            console.log('Phase Index:', phaseIndex);
+            console.log('Phase ID:', phase.id);
+            console.log('Phase Title:', phase.title);
+            console.log('Storage Key:', STORAGE_KEY);
+            console.log('Completed Quizzes:', Array.from(completedQuizzes));
+            console.log('Milestones:', milestones.map(m => m.id));
+            alert(`Phase Index: ${phaseIndex}\nPhase ID: ${phase.id}\nCompleted: ${Array.from(completedQuizzes).join(', ')}`);
+          }}
+        >
+          ℹ️ Debug Info
+        </button>
+        <button
+          className="px-4 py-2 bg-red-500 text-white rounded-xl font-bold hover:bg-red-600"
+          onClick={() => {
+            if (confirm('Xóa tất cả tiến độ của giai đoạn này?')) {
+              localStorage.removeItem(STORAGE_KEY);
+              saveCompletedQuizzes(new Set());
+              alert('Đã xóa tiến độ!');
+            }
+          }}
+        >
+          🗑️ Xóa tiến độ
+        </button>
+      </div>
       <div className="mb-8 p-6 bg-white/90 rounded-2xl border border-red-200 shadow-lg">
         <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center gap-3">
           🏛️ {phase.title}
         </h3>
         <p className="text-base text-slate-600 mt-2 mb-4">{phase.description}</p>
-        <div className="text-sm font-medium mb-2">
-          <span className="text-red-600">
-            🧩 Tiến độ: {completedQuizzes.size}/{milestones.length} MOOC hoàn thành
-          </span>
-          {completedQuizzes.size === milestones.length && milestones.length > 0 && (
-            <span className="ml-3 text-green-600 font-bold">✅ Mảnh ghép đã mở khóa!</span>
-          )}
-        </div>
-        <div className="text-sm text-slate-600">
-          📝 Hoàn thành <strong>TẤT CẢ {milestones.length} MOOC</strong> để mở khóa mảnh ghép của giai đoạn này
-        </div>
+        {completedQuizzes.size === milestones.length && milestones.length > 0 ? (
+          <>
+            <div className="text-sm font-medium mb-2">
+              <span className="text-red-600">
+                🧩 Tiến độ: {completedQuizzes.size}/{milestones.length} MOOC hoàn thành
+              </span>
+              <span className="ml-3 text-green-600 font-bold">✅ Mảnh ghép đã mở khóa!</span>
+            </div>
+            <div className="text-sm text-slate-600">
+              📝 Hoàn thành <strong>TẤT CẢ {milestones.length} MOOC</strong> để mở khóa mảnh ghép của giai đoạn này
+            </div>
+          </>
+        ) : (
+          <div className="text-sm text-slate-600">
+            📝 Hoàn thành <strong>TẤT CẢ {milestones.length} MOOC</strong> để mở khóa mảnh ghép của giai đoạn này
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,7 +170,7 @@ export default function Gallery({ phase, phaseIndex }) {
           const isCompleted = completedQuizzes.has(milestone.id);
           const quizData = QUIZ_DATA[milestone.id] || [];
           const hasQuiz = quizData.length > 0;
-          
+          // Chỉ hiển thị trạng thái hoàn thành nếu milestone.id thực sự nằm trong completedQuizzes
           return (
             <div 
               key={milestone.id} 
@@ -277,11 +369,10 @@ export default function Gallery({ phase, phaseIndex }) {
                         // Hoàn thành MOOC này
                         const newCompletedQuizzes = new Set(completedQuizzes);
                         newCompletedQuizzes.add(milestone.id);
-                        setCompletedQuizzes(newCompletedQuizzes);
+                        saveCompletedQuizzes(newCompletedQuizzes);
                         
                         // Unlock milestone ngay khi hoàn thành quiz
                         unlockPiece(milestone.id);
-                        
                         close();
                         alert(`🎉 Hoàn thành MOOC "${milestone.title}"!`);
                         
