@@ -24,7 +24,7 @@ export default function Quiz({ question, options = [], onCorrect, onWrong }) {
             key={opt.value}
             disabled={submitted}
             className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
-              submitted && opt.value === question.correct
+              submitted && opt.value === question.correct && isCorrect
                 ? 'border-green-500 bg-green-100 text-green-800'
                 : submitted && answer === opt.value && !isCorrect
                 ? 'border-red-500 bg-red-100 text-red-800'
@@ -39,7 +39,7 @@ export default function Quiz({ question, options = [], onCorrect, onWrong }) {
                 {opt.value}
               </span>
               {opt.label}
-              {submitted && opt.value === question.correct && (
+              {submitted && opt.value === question.correct && isCorrect && (
                 <span className="ml-auto text-green-600">✓</span>
               )}
               {submitted && answer === opt.value && !isCorrect && (
@@ -76,15 +76,21 @@ export default function Quiz({ question, options = [], onCorrect, onWrong }) {
         )}
       </div>
 
-      {submitted && (
-        <div className={`mt-4 p-4 rounded-xl ${
-          isCorrect ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'
-        }`}>
-          <div className={`font-semibold mb-2 ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
-            {isCorrect ? '🎉 Chính xác!' : '❌ Chưa đúng'}
+      {submitted && isCorrect && (
+        <div className="mt-4 p-4 rounded-xl bg-green-100 border border-green-300">
+          <div className="font-semibold mb-2 text-green-800">
+            🎉 Chính xác!
           </div>
-          <div className={`text-sm leading-relaxed ${isCorrect ? 'text-green-700' : 'text-red-700'}`}>
+          <div className="text-sm leading-relaxed text-green-700">
             <strong>Giải thích:</strong> {question.explanation}
+          </div>
+        </div>
+      )}
+      
+      {submitted && !isCorrect && (
+        <div className="mt-4 p-4 rounded-xl bg-orange-100 border border-orange-300">
+          <div className="font-semibold text-orange-800">
+            💪 Đừng nản chí! Hãy thử lại nhé!
           </div>
         </div>
       )}

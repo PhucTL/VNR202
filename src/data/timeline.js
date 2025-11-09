@@ -15,12 +15,18 @@ const TIMELINE = [
         caption: 'Hội nghị thành lập Đảng tại Hồng Kông ngày 3/2/1930',
         videoUrl: 'https://www.youtube.com/watch?v=C3-HHefTxWc',
         details: {
-          date: '3/2/1930',
-          location: 'Hồng Kông',
-          significance: 'Đánh dấu sự ra đời của tổ chức lãnh đạo cách mạng Việt Nam',
-          keyFigures: ['Nguyễn Ái Quốc'],
-          historicalContext: 'Trong bối cảnh phong trào cách mạng thế giới và nhu cầu giải phóng dân tộc'
-        },
+            date: '03/02/1930',
+            location: 'Cửu Long, Hồng Kông (Trung Quốc)',
+            historicalContext: 'Sau gần một thế kỷ bị thực dân Pháp đô hộ, các phong trào yêu nước theo nhiều khuynh hướng khác nhau đều thất bại, đất nước rơi vào khủng hoảng sâu sắc về đường lối cứu nước.',
+            significance: 'Đánh dấu bước ngoặt lịch sử, chấm dứt khủng hoảng về đường lối cách mạng và mở ra thời kỳ mới – thời kỳ cách mạng vô sản ở Việt Nam.',
+            outcome: 'Hợp nhất ba tổ chức cộng sản thành một Đảng duy nhất – Đảng Cộng sản Việt Nam; thông qua Cương lĩnh chính trị đầu tiên do Nguyễn Ái Quốc soạn thảo, xác định con đường cách mạng giải phóng dân tộc.',
+            keyFigures: [
+              'Nguyễn Ái Quốc (Chủ tịch Hồ Chí Minh)'
+            ],
+            coreIdea: 'Kết hợp chủ nghĩa Mác – Lênin với phong trào công nhân và phong trào yêu nước Việt Nam; đặt nhiệm vụ giải phóng dân tộc lên hàng đầu.',
+            impact: 'Đặt nền móng cho mọi thắng lợi của cách mạng Việt Nam; khẳng định con đường cách mạng vô sản là đúng đắn, phù hợp quy luật phát triển của dân tộc và thời đại.',
+            quote: '“Đảng muốn vững thì phải có chủ nghĩa làm cốt... Chủ nghĩa chân chính nhất, chắc chắn nhất, cách mệnh nhất là chủ nghĩa Lênin và chủ nghĩa Mác.” – Nguyễn Ái Quốc, *Đường Cách Mệnh (1927)*'
+          },
         audioText: `Năm 1930, sau gần một thế kỷ bị thực dân Pháp đô hộ, các phong trào yêu nước ở Việt Nam lần lượt thất bại, đất nước rơi vào khủng hoảng sâu sắc về đường lối cứu nước. Trong bối cảnh đó, Nguyễn Ái Quốc đã ra đi tìm đường giải phóng dân tộc. Năm 1920, khi tiếp cận Luận cương của Lênin, Người khẳng định con đường cứu nước đúng đắn là con đường cách mạng vô sản.
                     Từ năm 1925, Nguyễn Ái Quốc tích cực truyền bá chủ nghĩa Mác - Lênin vào Việt Nam, sáng lập Hội Việt Nam Cách mạng Thanh niên và xuất bản tác phẩm Đường cách mệnh, đặt nền tảng tư tưởng cho phong trào cách mạng mới. Đến năm 1929, sự phát triển mạnh mẽ của phong trào cách mạng đã dẫn đến sự ra đời của ba tổ chức cộng sản riêng rẽ, đặt ra yêu cầu cấp thiết phải thống nhất thành một đảng duy nhất.
                     Từ ngày 6 tháng 1 đến 7 tháng 2 năm 1930, dưới sự chủ trì của Nguyễn Ái Quốc tại Cửu Long, Hồng Kông, Hội nghị hợp nhất các tổ chức cộng sản được tổ chức, quyết định thành lập Đảng Cộng sản Việt Nam. Hội nghị đã thông qua Chánh cương vắn tắt và Sách lược vắn tắt, hình thành Cương lĩnh chính trị đầu tiên của Đảng.
@@ -36,11 +42,20 @@ const TIMELINE = [
         videoUrl: 'https://www.youtube.com/watch?v=SCPphVYDPDk',
         caption: 'Bác Hồ đọc Bảng Tuyên Ngôn Độc Lập (2/9/1945)',
         details: {
-          fullName: 'Nguyễn Sinh Cung (Nguyễn Ái Quốc)',
-          role: 'Người sáng lập và lãnh tụ của Đảng',
-          contribution: 'Ngày 2-9-1945, tại Quảng trường Ba Đình, Hà Nội, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập, khai sinh ra nước Việt Nam Dân chủ Cộng hòa, mở ra kỷ nguyên mới cho lịch sử dân tộc.',
-          quote: 'Đường cách mạng là con đường duy nhất để giải phóng dân tộc'
+          date: '02/09/1945',
+          location: 'Quảng trường Ba Đình, Hà Nội',
+          historicalContext: 'Sau thắng lợi của Cách mạng Tháng Tám năm 1945, chính quyền về tay nhân dân, chế độ phong kiến và thực dân sụp đổ, đòi hỏi công khai tuyên bố nền độc lập dân tộc trước quốc dân và thế giới.',
+          significance: 'Khai sinh ra nước Việt Nam Dân chủ Cộng hòa – nhà nước công nông đầu tiên ở Đông Nam Á; khẳng định chủ quyền dân tộc và ý chí tự do của nhân dân Việt Nam.',
+          outcome: 'Chủ tịch Hồ Chí Minh thay mặt Chính phủ lâm thời đọc Tuyên ngôn Độc lập, tuyên bố sự ra đời của nước Việt Nam mới – độc lập, tự do, bình đẳng.',
+          keyFigures: [
+            'Chủ tịch Hồ Chí Minh',
+            'Chính phủ lâm thời nước Việt Nam Dân chủ Cộng hòa'
+          ],
+          coreIdea: 'Mọi dân tộc đều có quyền bình đẳng, quyền sống, quyền tự do và quyền mưu cầu hạnh phúc; nhân dân Việt Nam quyết tâm giữ vững nền độc lập bằng mọi giá.',
+          impact: 'Chấm dứt ách đô hộ gần 100 năm của thực dân Pháp, mở ra kỷ nguyên độc lập – tự do – tiến lên chủ nghĩa xã hội; cổ vũ mạnh mẽ phong trào giải phóng dân tộc trên toàn thế giới.',
+          quote: '“Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thực đã thành một nước tự do và độc lập.” – Chủ tịch Hồ Chí Minh'
         },
+
         audioText: `Ngày 2 tháng 9 năm 1945, tại Quảng trường Ba Đình lịch sử, Hà Nội, trước hàng chục vạn đồng bào, Chủ tịch Hồ Chí Minh đã trịnh trọng đọc Bản Tuyên ngôn Độc lập, tuyên bố với toàn thế giới về sự ra đời của nước Việt Nam Dân chủ Cộng hòa – mở ra kỷ nguyên độc lập, tự do cho dân tộc Việt Nam. 
         Sau thắng lợi của Cách mạng Tháng Tám năm 1945, chính quyền về tay nhân dân trong cả nước. Ngày 27 tháng 8, Chính phủ lâm thời được thành lập do Chủ tịch Hồ Chí Minh đứng đầu. Tại căn gác nhỏ ở số 48 Hàng Ngang, Hà Nội, Người đã trực tiếp soạn thảo Bản Tuyên ngôn Độc lập, kết tinh trí tuệ và khát vọng tự do của cả dân tộc. 
         Trước đó, Vua Bảo Đại tuyên bố thoái vị, chấm dứt hơn một nghìn năm chế độ quân chủ ở Việt Nam. Sáng ngày 2 tháng 9, trong không khí thiêng liêng tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh thay mặt Chính phủ lâm thời long trọng đọc Bản Tuyên ngôn Độc lập. Mở đầu bản tuyên ngôn là chân lý bất hủ: “Tất cả các dân tộc trên thế giới đều sinh ra bình đẳng; dân tộc nào cũng có quyền sống, quyền sung sướng và quyền tự do.”
@@ -72,11 +87,12 @@ const TIMELINE = [
           outcome: 'Đề ra nhiệm vụ xây dựng chủ nghĩa xã hội ở miền Bắc, đấu tranh giải phóng miền Nam, thống nhất đất nước.',
           keyFigures: [
             'Chủ tịch Hồ Chí Minh',
-            'Bí thư thứ nhất Lê Duẩn'
+            'Bí thư Lê Duẩn'
           ],
           coreIdea: 'Độc lập dân tộc gắn liền với chủ nghĩa xã hội, kết hợp sức mạnh dân tộc với sức mạnh thời đại.',
           impact: 'Tạo cơ sở lý luận và thực tiễn cho thắng lợi vĩ đại trong cuộc kháng chiến chống Mỹ, cứu nước, tiến tới thống nhất hoàn toàn đất nước.',
-          quote: '“Đại hội lần này là Đại hội xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà.” – Chủ tịch Hồ Chí Minh'},
+          quote: '“Đại hội lần này là Đại hội xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà.” – Chủ tịch Hồ Chí Minh'
+        },
         audioText:`Năm 1951, khi cuộc kháng chiến chống thực dân Pháp bước vào giai đoạn ác liệt, Đại hội Đại biểu Toàn quốc lần thứ II của Đảng được triệu tập tại xã Vinh Quang, huyện Chiêm Hóa, tỉnh Tuyên Quang, từ ngày 11 đến 19 tháng 2. Đại hội được xem là “Đại hội kháng chiến kiến quốc”, đánh dấu bước ngoặt quan trọng trong quá trình lãnh đạo cách mạng Việt Nam.
 Tại Đại hội, Đảng đã đưa ra những quyết định chiến lược có ý nghĩa lịch sử. Trước hết, Đại hội quyết định tách Đảng Cộng sản Đông Dương thành các đảng riêng của ba nước Việt Nam, Lào và Campuchia để phù hợp với hoàn cảnh mỗi dân tộc. Ở Việt Nam, Đảng ra hoạt động công khai và chính thức lấy tên là Đảng Lao động Việt Nam – nhằm củng cố khối đại đoàn kết dân tộc và phát huy sức mạnh toàn dân trong cuộc kháng chiến.
 Đại hội đã thông qua Báo cáo chính trị do Chủ tịch Hồ Chí Minh trình bày, tổng kết 21 năm đấu tranh của Đảng và khẳng định nhiệm vụ trước mắt là tiêu diệt thực dân Pháp, đánh bại bọn can thiệp Mỹ, giành độc lập và thống nhất hoàn toàn cho đất nước. Đồng thời, Báo cáo về đường lối cách mạng Việt Nam do đồng chí Trường Chinh trình bày đã xác định con đường cách mạng dân tộc dân chủ nhân dân tiến lên chủ nghĩa xã hội.
