@@ -78,31 +78,33 @@ const TIMELINE = [
         type: 'video',
         src: '/assets/phan2-1.png', 
         videoUrl: 'https://www.youtube.com/watch?v=V4l9i_s0G4o',
-        caption: 'Đại hội đại biểu toàn quốc lần thứ II',
+        caption: 'Đại hội Kháng chiến kiến quốc (11-19/02/1951)',
          details: {
-          date: '9/1960',
-          location: 'Hà Nội',
-          historicalContext: 'Sau khi miền Bắc hoàn toàn giải phóng, đất nước bước vào thời kỳ xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh giải phóng miền Nam, thống nhất đất nước.',
-          significance: 'Đại hội III xác định miền Bắc là hậu phương lớn, miền Nam là tiền tuyến lớn, hoàn chỉnh đường lối chiến lược cách mạng Việt Nam.',
-          outcome: 'Đề ra nhiệm vụ xây dựng chủ nghĩa xã hội ở miền Bắc, đấu tranh giải phóng miền Nam, thống nhất đất nước.',
+          date: '11-19/02/1951',
+          location: 'Xã Vinh Quang (nay là Kim Bình), huyện Chiêm Hóa, tỉnh Tuyên Quang – căn cứ địa cách mạng Việt Bắc',
+          historicalContext: 'Cuộc kháng chiến chống thực dân Pháp đang bước vào giai đoạn quyết liệt. Đảng cần đưa ra những quyết sách lịch sử để tạo nền tảng vững chắc cho thắng lợi cuối cùng của cuộc kháng chiến.',
+          significance: 'Đại hội được mệnh danh là "Đại hội Kháng chiến kiến quốc", là Đại hội mở đường thắng lợi cho cuộc kháng chiến chống Pháp. Hoàn chỉnh đường lối cách mạng dân tộc dân chủ nhân dân, tăng cường vai trò lãnh đạo của Đảng.',
+          outcome: 'Tách Đảng Cộng sản Đông Dương thành các đảng riêng; Đảng Lao động Việt Nam ra hoạt động công khai; thông qua Chính cương và Điều lệ mới; xác định con đường cách mạng dân tộc dân chủ nhân dân tiến lên chủ nghĩa xã hội.',
           keyFigures: [
-            'Chủ tịch Hồ Chí Minh',
-            'Bí thư Lê Duẩn'
+            'Chủ tịch Đảng Hồ Chí Minh',
+            'Tổng Bí thư Trường Chinh'
           ],
-          coreIdea: 'Độc lập dân tộc gắn liền với chủ nghĩa xã hội, kết hợp sức mạnh dân tộc với sức mạnh thời đại.',
-          impact: 'Tạo cơ sở lý luận và thực tiễn cho thắng lợi vĩ đại trong cuộc kháng chiến chống Mỹ, cứu nước, tiến tới thống nhất hoàn toàn đất nước.',
-          quote: '“Đại hội lần này là Đại hội xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà.” – Chủ tịch Hồ Chí Minh'
+          coreIdea: 'Đánh đuổi bọn đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc; xóa bỏ những di tích phong kiến, làm cho người cày có ruộng, phát triển chế độ dân chủ nhân dân, gây cơ sở cho chủ nghĩa xã hội.',
+          impact: 'Tăng cường uy tín và vai trò lãnh đạo của giai cấp công nhân và Đảng đối với toàn dân tộc. Tạo động lực tinh thần to lớn, dẫn đến thắng lợi lịch sử Điện Biên Phủ (1954) và hoàn thành công cuộc giải phóng miền Bắc.',
+          quote: '"Đánh đuổi bọn đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc; xóa bỏ những di tích phong kiến và nửa phong kiến, làm cho người cày có ruộng, phát triển chế độ dân chủ nhân dân, gây cơ sở cho chủ nghĩa xã hội." – Chính cương Đảng Lao động Việt Nam'
         },
-        audioText:`Năm 1951, khi cuộc kháng chiến chống thực dân Pháp bước vào giai đoạn ác liệt, Đại hội Đại biểu Toàn quốc lần thứ II của Đảng được triệu tập tại xã Vinh Quang, huyện Chiêm Hóa, tỉnh Tuyên Quang, từ ngày 11 đến 19 tháng 2. Đại hội được xem là “Đại hội kháng chiến kiến quốc”, đánh dấu bước ngoặt quan trọng trong quá trình lãnh đạo cách mạng Việt Nam.
-Tại Đại hội, Đảng đã đưa ra những quyết định chiến lược có ý nghĩa lịch sử. Trước hết, Đại hội quyết định tách Đảng Cộng sản Đông Dương thành các đảng riêng của ba nước Việt Nam, Lào và Campuchia để phù hợp với hoàn cảnh mỗi dân tộc. Ở Việt Nam, Đảng ra hoạt động công khai và chính thức lấy tên là Đảng Lao động Việt Nam – nhằm củng cố khối đại đoàn kết dân tộc và phát huy sức mạnh toàn dân trong cuộc kháng chiến.
-Đại hội đã thông qua Báo cáo chính trị do Chủ tịch Hồ Chí Minh trình bày, tổng kết 21 năm đấu tranh của Đảng và khẳng định nhiệm vụ trước mắt là tiêu diệt thực dân Pháp, đánh bại bọn can thiệp Mỹ, giành độc lập và thống nhất hoàn toàn cho đất nước. Đồng thời, Báo cáo về đường lối cách mạng Việt Nam do đồng chí Trường Chinh trình bày đã xác định con đường cách mạng dân tộc dân chủ nhân dân tiến lên chủ nghĩa xã hội.
-Đại hội cũng thông qua Chính cương và Điều lệ mới của Đảng, nêu rõ mục tiêu: “Đánh đuổi đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc; xóa bỏ tàn tích phong kiến, làm cho người cày có ruộng, phát triển chế độ dân chủ nhân dân, gây cơ sở cho chủ nghĩa xã hội.”
-Đại hội đã bầu Chủ tịch Hồ Chí Minh làm Chủ tịch Đảng và đồng chí Trường Chinh làm Tổng Bí thư.
-Đại hội II của Đảng có ý nghĩa lịch sử vô cùng to lớn – hoàn chỉnh đường lối cách mạng dân tộc dân chủ nhân dân, tăng cường vai trò lãnh đạo của Đảng, củng cố niềm tin của nhân dân và tạo tiền đề cho thắng lợi vĩ đại của chiến dịch Điện Biên Phủ năm 1954, kết thúc cuộc kháng chiến chống Pháp thắng lợi.`
+        audioText:`Đại hội Đại biểu Toàn quốc lần thứ II của Đảng, được mệnh danh là "Đại hội Kháng chiến kiến quốc", diễn ra trong bối cảnh cuộc kháng chiến chống thực dân Pháp đang bước vào giai đoạn quyết liệt. Đại hội đã đưa ra những quyết sách lịch sử, tạo nền tảng vững chắc cho thắng lợi cuối cùng của cuộc kháng chiến.
+Đại hội diễn ra từ ngày 11 đến ngày 19 tháng 2 năm 1951, tại xã Vinh Quang, nay là Kim Bình, huyện Chiêm Hóa, tỉnh Tuyên Quang – căn cứ địa cách mạng Việt Bắc.
+Đại hội đã đưa ra các quyết định then chốt, khẳng định vai trò lãnh đạo và vạch ra đường lối phát triển của cách mạng Việt Nam.
+Thứ nhất, về đổi tên Đảng và hoạt động công khai: Đại hội quyết định tách Đảng Cộng sản Đông Dương thành các đảng riêng ở Việt Nam, Lào và Campuchia để phù hợp với hoàn cảnh kháng chiến của mỗi nước. Tại Việt Nam, Đảng ra hoạt động công khai và chính thức lấy tên là Đảng Lao động Việt Nam. Sự thay đổi này nhằm củng cố khối đoàn kết dân tộc và phát huy sức mạnh của quần chúng trong cuộc kháng chiến.
+Thứ hai, thông qua đường lối cách mạng dân tộc dân chủ nhân dân: Đại hội thông qua Báo cáo chính trị do Chủ tịch Hồ Chí Minh trình bày, tổng kết 21 năm hoạt động của Đảng. Báo cáo đã khẳng định nhiệm vụ chủ yếu trước mắt là tiêu diệt thực dân Pháp và đánh bại bọn can thiệp Mỹ, giành thống nhất độc lập hoàn toàn. Đại hội thông qua Báo cáo về đường lối cách mạng Việt Nam do đồng chí Trường Chinh trình bày, xác định đó là con đường cách mạng dân tộc dân chủ nhân dân tiến lên chủ nghĩa xã hội.
+Thứ ba, xác định nhiệm vụ và triển vọng cách mạng: Chính cương Đảng Lao động Việt Nam và Điều lệ mới của Đảng được thông qua, xác định nhiệm vụ cách mạng: "Đánh đuổi bọn đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc; xóa bỏ những di tích phong kiến và nửa phong kiến, làm cho người cày có ruộng, phát triển chế độ dân chủ nhân dân, gây cơ sở cho chủ nghĩa xã hội."
+Về cơ cấu lãnh đạo mới, Đại hội bầu Ban Chấp hành Trung ương mới. Đồng chí Hồ Chí Minh được bầu làm Chủ tịch Đảng, và đồng chí Trường Chinh được bầu lại làm Tổng Bí thư.
+Đại hội đại biểu toàn quốc lần thứ II của Đảng có ý nghĩa lịch sử to lớn, là Đại hội mở đường thắng lợi cho cuộc kháng chiến chống Pháp. Đại hội đã hoàn chỉnh đường lối cách mạng dân tộc dân chủ nhân dân, trở thành ngọn cờ dẫn dắt toàn dân tộc. Việc Đảng ra hoạt động công khai dưới tên gọi mới đã tăng cường uy tín và vai trò lãnh đạo của giai cấp công nhân và Đảng đối với toàn dân tộc. Quyết định của Đại hội đã tạo thêm sức mạnh tinh thần và động lực to lớn, dẫn đến thắng lợi lịch sử Điện Biên Phủ năm 1954 và hoàn thành công cuộc giải phóng miền Bắc.`
         },
       {
         id: 'p2-m2',
-        title: 'Chiến  Dịch Điện Biên Phủ',
+        title: 'Chiến Dịch Điện Biên Phủ',
         category: 'event',
         type: 'video',
         src: '/assets/phan2-2.png',
@@ -125,7 +127,7 @@ Tại Đại hội, Đảng đã đưa ra những quyết định chiến lượ
           ],
           significance: 'Là đỉnh cao của cuộc kháng chiến chống Pháp, “một thiên sử vàng” trong lịch sử dân tộc Việt Nam. Đánh bại hoàn toàn cuộc xâm lược của Pháp, làm sụp đổ chủ nghĩa thực dân cũ trên phạm vi toàn cầu. Tạo điều kiện để ký Hiệp định Giơnevơ (7/1954), chấm dứt chiến tranh, lập lại hòa bình ở Đông Dương.',
           impact: 'Đối với Việt Nam: Giải phóng hoàn toàn miền Bắc, mở ra thời kỳ xây dựng chủ nghĩa xã hội và làm hậu phương lớn cho cách mạng miền Nam. Đối với thế giới: Cổ vũ mạnh mẽ phong trào giải phóng dân tộc, đánh dấu sự sụp đổ của chủ nghĩa thực dân cũ. Góp phần thay đổi cục diện chính trị – quân sự toàn cầu, khẳng định vị thế của Việt Nam trong phong trào cách mạng thế giới.',
-          quote: 'Thà hy sinh tất cả, chứ không chịu mất nước, không chịu làm nô lệ'
+         quote: '“Trận này rất quan trọng, phải đánh cho thắng. Chắc thắng mới đánh, không chắc thắng không đánh.” – Chủ tịch Hồ Chí Minh'
         },
         audioText:`Chiến thắng Điện Biên Phủ ngày 7 tháng 5 năm 1954 là đỉnh cao của cuộc tiến công chiến lược Đông Xuân 1953–1954, được xem như một “thiên sử vàng” trong lịch sử dân tộc Việt Nam, đánh dấu bước ngoặt vĩ đại trong cuộc kháng chiến chống thực dân Pháp.
 Cuối năm 1953, quân Pháp xây dựng Điện Biên Phủ thành tập đoàn cứ điểm kiên cố nhất Đông Dương, nhằm thu hút và tiêu diệt lực lượng chủ lực của ta. Trước âm mưu đó, Trung ương Đảng Lao động Việt Nam, đứng đầu là Chủ tịch Hồ Chí Minh, đã hạ quyết tâm chiến lược: “Tiêu diệt tập đoàn cứ điểm Điện Biên Phủ để tạo bước ngoặt quyết định trong chiến tranh.”
